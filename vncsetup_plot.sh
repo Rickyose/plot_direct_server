@@ -17,6 +17,7 @@ chown -R ubuntu /home/ubuntu/.config/rclone/
 pwd
 ############################### Install alat2 plotting
 cd /home/ubuntu/
+mv -rf /home/ubuntu/plot_server/plot_start.sh /home/ubuntu/
 pwd
 sudo apt install -y iotop libsodium-dev libgmp3-dev cmake g++ git -y && git clone https://github.com/madMAx43v3r/chia-plotter.git && cd chia-plotter && git submodule update --init && ./make_devel.sh && ./build/chia_plot --help
 ############################### Mkdir untuk gdrive zip source dan destination

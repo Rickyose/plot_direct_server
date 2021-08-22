@@ -126,6 +126,8 @@ sudo -u root chown -R ubuntu /gdrive50
 
 ############################### Mount SSD Drives
 cd /
+mkdir plot1
+mkdir plot3
 sudo mkfs -t xfs /dev/nvme0n1 && sudo mkfs -t xfs /dev/sdb
 mount /dev/nvme0n1 /plot1 && mount /dev/sdb /plot3
 sudo -u root chown -R ubuntu /plot3 && sudo -u ubuntu chmod 777 plot3

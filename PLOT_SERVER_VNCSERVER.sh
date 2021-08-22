@@ -7,7 +7,7 @@ echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 adduser --disabled-password --gecos "" ubuntu
 echo 'ubuntu:Duri8490' | sudo chpasswd
 ############################## Install Server
-sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install gnome-shell -y && sudo apt-get install ubuntu-gnome-desktop -y && sudo apt-get install autocutsel -y && sudo apt-get install gnome-core -y && sudo apt-get install gnome-panel -y && sudo apt-get install gnome-themes-standard -y && sudo apt-get install tightvncserver -y
+sudo apt-get update -y && sudo apt-get upgrade -y
 apt-get install -y unzip
 apt-get install zip -y
 apt-get install -y ifstat
@@ -132,14 +132,7 @@ sudo mkfs -t xfs /dev/nvme0n1 && sudo mkfs -t xfs /dev/sdb
 mount /dev/nvme0n1 /plot1 && mount /dev/sdb /plot3
 sudo -u root chown -R ubuntu /plot3 && sudo -u ubuntu chmod 777 plot3
 sudo -u root chown -R ubuntu /plot1 && sudo -u ubuntu chmod 777 plot1 
-############################### Add VNC PASSWORD, AGAR TIDAK SURUH MASUKIN PASS WAKTU INSTALL VNCSERVER
-myuser="ubuntu"
-mypasswd="Aa666666"
 
-mkdir /home/$myuser/.vnc
-echo $mypasswd | vncpasswd -f > /home/$myuser/.vnc/passwd
-chown -R $myuser:$myuser /home/$myuser/.vnc
-chmod 0600 /home/$myuser/.vnc/passwd
 ######################################################################################################
 cd /root/plot_server/
 sudo -u ubuntu ./vncsetup_plot.sh &

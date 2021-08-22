@@ -146,12 +146,24 @@ if [ $initiate_start -eq 1 ]; then
 	do
 	 cd /home/ubuntu/chia-plotter/build/ && ./chia_plot -n 2 -r 4 -u 7 -t /plot1/ -d /plot3/ -c "$poolkey" -f "$farmkey"
 	 echo "PRESS CTRL+C to cancel script"
-	 sleep 20
+	 ada_plot_1=`find /plot3/ -name *plot | wc -l`
+	 while [ $ada_plot_1 -gt 0 ] 
+	 do
+		 sleep 30
+		 ada_plot_1=`find /plot3/ -name *plot | wc -l`
+		 sleep 30
+	 done
 	 cd 
 	 zip1 &
 	 cd /home/ubuntu/chia-plotter/build/ && ./chia_plot -n 2 -r 4 -u 7 -t /plot1/ -d /plot3/ -c "$poolkey" -f "$farmkey"
 	 echo "PRESS CTRL+C to cancel script"
-	 sleep 20
+	 ada_plot_2=`find /plot3/ -name *plot | wc -l`
+	 while [ $ada_plot_2 -gt 0 ] 
+	 do
+		 sleep 30
+		 ada_plot_2=`find /plot3/ -name *plot | wc -l`
+		 sleep 30
+	 done
 	 cd 
 	 zip2 &
 	 N=$(($N + 4))

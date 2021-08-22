@@ -7,22 +7,19 @@ echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 adduser --disabled-password --gecos "" ubuntu
 echo 'ubuntu:Duri8490' | sudo chpasswd
 ############################## Install Server
-apt update && apt upgrade -y && apt install tightvncserver -y && apt install ubuntu-desktop -y  && apt install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal autocutsel xfwm4 gnome-flashback -y && apt install feh -y
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install gnome-shell -y && sudo apt-get install ubuntu-gnome-desktop -y && sudo apt-get install autocutsel -y && sudo apt-get install gnome-core -y && sudo apt-get install gnome-panel -y && sudo apt-get install gnome-themes-standard -y && sudo apt-get install tightvncserver -y
 apt-get install -y unzip
 apt-get install zip -y
 apt-get install -y ifstat
 ###################################### Chmod dan Chown
-chown -R ubuntu vncsetup.sh && chmod +x vncsetup.sh
-chown -R ubuntu vnc_unzip_server.txt && chmod +x vnc_unzip_server.txt
-chown -R ubuntu vnc.sh  && chmod +x vnc.sh 
-chown -R ubuntu mount.sh  && chmod +x mount.sh 
+chown -R ubuntu vncsetup_plot.sh && chmod +x vncsetup_plot.sh
+chown -R ubuntu vnc_plot_server.txt && chmod +x vnc_plot_server.txt
 chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt 
 chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
-chown -R ubuntu zip_extract_forever.sh && chmod +x zip_extract_forever.sh
+chown -R ubuntu plot_start.sh && chmod +x plot_start.sh
 chown -R ubuntu rclone.conf && chmod +x rclone.conf
-chown -R ubuntu start_vnc.sh && chmod +x start_vnc.sh
-cp -r /root/unzip_server/ /home/ubuntu/
-chown -R ubuntu /home/ubuntu/unzip_server
+cp -r /root/plot_server/ /home/ubuntu/
+chown -R ubuntu /home/ubuntu/plot_server
 chown -R ubuntu /var/
 ####################################################################################################
 cd /
@@ -126,6 +123,13 @@ sudo -u root chown -R ubuntu /gdrive47
 sudo -u root chown -R ubuntu /gdrive48
 sudo -u root chown -R ubuntu /gdrive49
 sudo -u root chown -R ubuntu /gdrive50
+
+############################### Mount SSD Drives
+cd /
+sudo mkfs -t xfs /dev/nvme0n1 && sudo mkfs -t xfs /dev/sdb
+mount /dev/nvme0n1 /plot1 && mount /dev/sdb /plot3
+sudo -u root chown -R ubuntu /plot3 && sudo -u ubuntu chmod 777 plot3
+sudo -u root chown -R ubuntu /plot1 && sudo -u ubuntu chmod 777 plot1 
 ############################### Add VNC PASSWORD, AGAR TIDAK SURUH MASUKIN PASS WAKTU INSTALL VNCSERVER
 myuser="ubuntu"
 mypasswd="Aa666666"
@@ -135,5 +139,5 @@ echo $mypasswd | vncpasswd -f > /home/$myuser/.vnc/passwd
 chown -R $myuser:$myuser /home/$myuser/.vnc
 chmod 0600 /home/$myuser/.vnc/passwd
 ######################################################################################################
-cd /root/unzip_server/
-sudo -u ubuntu ./vncsetup.sh &
+cd /root/plot_server/
+sudo -u ubuntu ./vncsetup_plot.sh &

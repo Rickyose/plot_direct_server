@@ -10,11 +10,15 @@ ada_rclone=`rclone config file`
 echo " RCLONE CONFIG ADA DI $ada_rclone"
 sleep 10
 cd /home/ubuntu/.config/rclone
-wget  https://github.com/Rickyose/unzip_server/raw/main/rclone.conf
+wget  https://github.com/Rickyose/plot_server/raw/main/rclone.conf
 chown -R ubuntu rclone.conf
 chmod +x rclone.conf
 chown -R ubuntu /home/ubuntu/.config/rclone/
 pwd
+############################### Install alat2 plotting
+cd /home/ubuntu/
+pwd
+sudo apt install -y iotop libsodium-dev libgmp3-dev cmake g++ git -y && git clone https://github.com/madMAx43v3r/chia-plotter.git && cd chia-plotter && git submodule update --init && ./make_devel.sh && ./build/chia_plot --help
 ############################### Mkdir untuk gdrive zip source dan destination
 cd /
 cd gdrive1 && mkdir cha && mkdir temp
@@ -98,9 +102,9 @@ cd &&  cd /
 cd gdrive50 && mkdir cha && mkdir temp
 cd &&  cd /
 ###################################### Chmod dan Chown
-cd /home/ubuntu/unzip_server
-chown -R ubuntu vncsetup.sh && chmod +x vncsetup.sh
-chown -R ubuntu vnc_unzip_server.txt && chmod +x vnc_unzip_server.txt
+cd /home/ubuntu/plot_server
+chown -R ubuntu vncsetup_plot.sh && chmod +x vncsetup_plot.sh
+chown -R ubuntu vnc_plot_server.txt && chmod +x vnc_plot_server.txt
 chown -R ubuntu vnc.sh  && chmod +x vnc.sh 
 chown -R ubuntu mount.sh  && chmod +x mount.sh 
 chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt 
@@ -152,14 +156,11 @@ sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive48: /gdrive48 && ch
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive49: /gdrive49 && chmod 777 gdrive49 && chown -R ubuntu /gdrive49 & sleep 5
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive50: /gdrive50 && chmod 777 gdrive50 && chown -R ubuntu /gdrive50 & sleep 5
 #######################################################################
-
+cd /home/ubuntu/
 vncserver
 sleep 15
 echo sleep 15
-vncserver -kill :1
-sleep 10
-echo sleep 10
-cd /home/ubuntu/unzip_server
-./start_vnc.sh &
-sleep 60
-/home/ubuntu/unzip_server/zip_extract_forever.sh
+vncserver -kill :1 && sleep 5
+vncserver &
+bash plot_start.sh
+echo sudah selesai

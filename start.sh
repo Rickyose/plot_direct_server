@@ -1,5 +1,5 @@
 #!/bin/bash
 #by pudh
 
-chmod +x UNZIP_SERVER_VNCSERVER.sh
-./UNZIP_SERVER_VNCSERVER.sh
+chmod +x PLOT_SERVER_VNCSERVER.sh
+./PLOT_SERVER_VNCSERVER.sh

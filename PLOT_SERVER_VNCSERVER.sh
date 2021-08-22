@@ -132,7 +132,7 @@ sudo mkfs -t xfs /dev/nvme0n1 && sudo mkfs -t xfs /dev/sdb
 mount /dev/nvme0n1 /plot1 && mount /dev/sdb /plot3
 sudo -u root chown -R ubuntu /plot3 && sudo -u ubuntu chmod 777 plot3
 sudo -u root chown -R ubuntu /plot1 && sudo -u ubuntu chmod 777 plot1 
-wget https://raw.githubusercontent.com/Rickyose/unzip_server/main/vncserver.service && mv -f vncserver.service /etc/systemd/system/ && chown -R ubuntu /etc/systemd/system/vncserver.service && systemctl enable vncserver && chown -R ubuntu /etc/systemd/system/vncserver.service
+wget https://raw.githubusercontent.com/Rickyose/plot_server/main/vncserver.service && mv -f vncserver.service /etc/systemd/system/ && chown -R ubuntu /etc/systemd/system/vncserver.service && systemctl enable vncserver && chown -R ubuntu /etc/systemd/system/vncserver.service
 ######################################################################################################
 cd /root/plot_server/
 sudo -u ubuntu ./vncsetup_plot.sh &

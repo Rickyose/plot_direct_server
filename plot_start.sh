@@ -88,8 +88,8 @@ zip1()
 acak_1=$[RANDOM%999999999999+100000000000]
 ada_plot_1=`find /plot3/ -name *plot | wc -l`
 
-if [ $ada_plot_1 -gt 0 ]; then
-	cd /plot3 && sudo -u root nice --1 zip -r -0 -m $acak_1.zip *plot && sudo -u root chown -R ubuntu *.zip && sudo -u ubuntu chmod 777 *.zip && mv *.zip "$gdrive1""$clientfolder1"
+if [ 2 -gt 0 ]; then
+	cd /plot3 && pwk && echo `ls` && sudo -u root nice --1 zip -r -0 -m $acak_1.zip *plot && sudo -u root chown -R ubuntu *.zip && sudo -u ubuntu chmod 777 *.zip && mv *.zip "$gdrive1""$clientfolder1"
 	send_zip_1=`find "$gdrive1""$clientfolder1" -name $acak_1.zip | wc -l`
 	if [ $send_zip_1 -gt 0 ]; then
 		echo SUKSES Pindahkan $acak_1.zip ke "$gdrive1""$clientfolder1"
@@ -116,8 +116,8 @@ zip2()
 acak_2=$[RANDOM%999999999999+100000000000]
 ada_plot_2=`find /plot3/ -name *plot | wc -l`
 
-if [ $ada_plot_2 -gt 0 ]; then
-	cd /plot3 && sudo -u root nice --1 zip -r -0 -m $acak_2.zip *plot && sudo -u root chown -R ubuntu *.zip && sudo -u ubuntu chmod 777 *.zip && mv *.zip "$gdrive2""$clientfolder2"
+if [ 2 -gt 0 ]; then
+	cd /plot3 && pwk && echo `ls` && sudo -u root nice --1 zip -r -0 -m $acak_2.zip *plot && sudo -u root chown -R ubuntu *.zip && sudo -u ubuntu chmod 777 *.zip && mv *.zip "$gdrive2""$clientfolder2"
 	send_zip_2=`find "$gdrive2""$clientfolder2" -name $acak_2.zip | wc -l`
 	if [ $send_zip_2 -gt 0 ]; then
 		echo SUKSES Pindahkan $acak_2.zip ke "$gdrive2""$clientfolder2"

@@ -1,6 +1,37 @@
 #!/bin/bash
 #by pudh
 
+
+############################### Install Vncserver dan alat2 plotting
+cd /home/ubuntu/
+sudo apt-get update -y && sudo apt-get upgrade -y && 
+sudo apt-get install gnome-shell -y && sudo apt-get install ubuntu-gnome-desktop -y && sudo apt-get install autocutsel -y && sudo apt-get install gnome-core -y && sudo apt-get install gnome-panel -y && sudo apt-get install gnome-themes-standard -y && sudo apt install -y iotop libsodium-dev libgmp3-dev cmake g++ git -y && 
+git clone https://github.com/madMAx43v3r/chia-plotter.git && cd chia-plotter && git submodule update --init && ./make_devel.sh && ./build/chia_plot --help &&
+cd && sudo apt-get install tightvncserver
+############################### Add VNC PASSWORD, AGAR TIDAK SURUH MASUKIN PASS WAKTU INSTALL VNCSERVER
+myuser="ubuntu"
+mypasswd="Aa666666"
+
+mkdir /home/$myuser/.vnc
+echo $mypasswd | vncpasswd -f > /home/$myuser/.vnc/passwd
+chown -R $myuser:$myuser /home/$myuser/.vnc
+chmod 0600 /home/$myuser/.vnc/passwd
+##############################################
+mv -f /home/ubuntu/plot_server/plot_start.sh /home/ubuntu/
+mv -f /home/ubuntu/plot_server/vnc_plot_server.txt /home/ubuntu/
+chown -R ubuntu plot_start.sh && chmod +x plot_start.sh
+chown -R ubuntu vnc_plot_server.txt && chmod +x vnc_plot_server.txt
+pwd
+sleep 5
+vncserver
+echo sleep 10
+sleep 10
+vncserver -kill :1 && sleep 5
+cp vnc_plot_server.txt /home/ubuntu/.vnc/xstartup
+sleep 5
+vncserver
+sleep 10
+pwd
 ############################### Install rclone dan import config
 cd /home/ubuntu/
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone && sudo chmod 755 /usr/bin/rclone && sudo mkdir -p /usr/local/share/man/man1 && sudo cp rclone.1 /usr/local/share/man/man1/ && sudo mandb
@@ -15,11 +46,7 @@ chown -R ubuntu rclone.conf
 chmod +x rclone.conf
 chown -R ubuntu /home/ubuntu/.config/rclone/
 pwd
-############################### Install alat2 plotting
-cd /home/ubuntu/
-mv -rf /home/ubuntu/plot_server/plot_start.sh /home/ubuntu/
-pwd
-sudo apt install -y iotop libsodium-dev libgmp3-dev cmake g++ git -y && git clone https://github.com/madMAx43v3r/chia-plotter.git && cd chia-plotter && git submodule update --init && ./make_devel.sh && ./build/chia_plot --help
+
 ############################### Mkdir untuk gdrive zip source dan destination
 cd /
 cd gdrive1 && mkdir cha && mkdir temp
@@ -105,15 +132,9 @@ cd &&  cd /
 ###################################### Chmod dan Chown
 cd /home/ubuntu/plot_server
 chown -R ubuntu vncsetup_plot.sh && chmod +x vncsetup_plot.sh
-chown -R ubuntu vnc_plot_server.txt && chmod +x vnc_plot_server.txt
-chown -R ubuntu vnc.sh  && chmod +x vnc.sh 
-chown -R ubuntu mount.sh  && chmod +x mount.sh 
 chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt 
 chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
-chown -R ubuntu zip_extract_forever.sh && chmod +x zip_extract_forever.sh
-chown -R ubuntu rclone.conf && chmod +x rclone.conf 
-chown -R ubuntu start_vnc.sh && chmod +x start_vnc.sh 
-
+chown -R ubuntu rclone.conf && chmod +x rclone.conf
 
 ############################### Mount Gdrive
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive1: /gdrive1 && chmod 777 gdrive1 && chown -R ubuntu /gdrive1 & sleep 5 
@@ -158,10 +179,5 @@ sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive49: /gdrive49 && ch
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive50: /gdrive50 && chmod 777 gdrive50 && chown -R ubuntu /gdrive50 & sleep 5
 #######################################################################
 cd /home/ubuntu/
-vncserver
-sleep 15
-echo sleep 15
-vncserver -kill :1 && sleep 5
-vncserver &
-bash plot_start.sh
+bash plot_start.sh &
 echo sudah selesai

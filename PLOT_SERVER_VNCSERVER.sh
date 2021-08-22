@@ -18,6 +18,7 @@ chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt
 chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
 chown -R ubuntu plot_start.sh && chmod +x plot_start.sh
 chown -R ubuntu rclone.conf && chmod +x rclone.conf
+chown -R ubuntu mount.sh  && chmod +x mount.sh
 cp -r /root/plot_server/ /home/ubuntu/
 chown -R ubuntu /home/ubuntu/plot_server
 chown -R ubuntu /var/

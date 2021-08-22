@@ -135,6 +135,7 @@ cd /home/ubuntu/plot_server
 chown -R ubuntu vncsetup_plot.sh && chmod +x vncsetup_plot.sh
 chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt 
 chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
+chown -R ubuntu mount.sh  && chmod +x mount.sh
 chown -R ubuntu rclone.conf && chmod +x rclone.conf
 
 ############################### Mount Gdrive

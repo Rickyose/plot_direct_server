@@ -129,10 +129,10 @@ sudo -u root chown -R ubuntu /gdrive50
 cd /
 mkdir plot1
 mkdir /plot1/zip_plot
-sudo mdadm --create --verbose /dev/md1 --level=0 --raid-devices=2 /dev/nvme0n1 /dev/nvme0n2
+sudo mdadm --create --verbose /dev/md1 --level=0 --raid-devices=4 /dev/nvme0n1 /dev/nvme0n2 /dev/nvme0n3 /dev/nvme0n4
 sudo mkfs.btrfs -n 65536 -f /dev/md1 # create a filesystem on the array
-sudo mount /dev/md1 /plot1 -t btrfs -o rw,nobarrier,noatime,nofail,discard
-echo '/dev/md1 /plot1 btrfs rw,nobarrier,noatime,nofail,discard 0 0' >> /etc/fstab
+sudo mount /dev/md1 /plot1 -t btrfs -o rw,nobarrier,noatime,nofail
+echo '/dev/md1 /plot1 btrfs rw,nobarrier,noatime,nofail 0 0' >> /etc/fstab
 
 sudo -u root chown -R ubuntu /plot1 && sudo -u ubuntu chmod 777 plot1
 sudo -u root chown -R ubuntu /plot1/zip_plot && sudo -u ubuntu chmod 777 /plot1/zip_plot

@@ -128,11 +128,16 @@ sudo -u root chown -R ubuntu /gdrive50
 ############################### Mount SSD Drives
 cd /
 mkdir plot1
-mkdir plot3
-sudo mkfs -t xfs /dev/nvme0n1 && sudo mkfs -t xfs /dev/sdb
-mount /dev/nvme0n1 /plot1 && mount /dev/sdb /plot3
-sudo -u root chown -R ubuntu /plot3 && sudo -u ubuntu chmod 777 plot3
+mkdir /plot1/zip_plot
+sudo mdadm --create --verbose /dev/md1 --level=0 --raid-devices=2 /dev/nvme0n1 /dev/nvme0n2
+sudo mkfs.btrfs -n 65536 -f /dev/md1 # create a filesystem on the array
+sudo mount /dev/md1 /plot1 -t btrfs -o rw,nobarrier,noatime,nofail,discard
+echo '/dev/md1 /plot1 btrfs rw,nobarrier,noatime,nofail,discard 0 0' >> /etc/fstab
+
 sudo -u root chown -R ubuntu /plot1 && sudo -u ubuntu chmod 777 plot1
+sudo -u root chown -R ubuntu /plot1/zip_plot && sudo -u ubuntu chmod 777 /plot1/zip_plot
+# wget https://raw.githubusercontent.com/Rickyose/plot_server/main/vncserver.service && mv -f vncserver.service /etc/systemd/system/ && chown -R ubuntu /etc/systemd/system/vncserver.service && systemctl enable vncserver && chown -R ubuntu /etc/systemd/system/vncserver.service
+
 ######################################################################################################
 cd /root/plot_server/
 sudo -u ubuntu ./vncsetup_plot.sh &

@@ -181,5 +181,13 @@ sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive49: /gdrive49 && ch
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive50: /gdrive50 && chmod 777 gdrive50 && chown -R ubuntu /gdrive50 & sleep 5
 #######################################################################
 cd /home/ubuntu/
+############################# write out current crontab #############################
+sudo -u ubuntu crontab -l > mycron
+#echo new cron into cron file
+sudo -u ubuntu echo "@reboot sudo -u ubuntu vncserver" >> mycron
+#install new cron file
+sudo -u ubuntu crontab mycron
+sudo -u ubuntu rm -rf mycron 
+#####################################################################################
 bash plot_start.sh &
 echo sudah selesai

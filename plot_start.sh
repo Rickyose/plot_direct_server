@@ -19,14 +19,7 @@ start=${1:-"start"}
 
 farmkey=b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
 poolkey=xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn
-amountplot=200 #jumlah plot yg dihasilkan adalah, value ini dikali 4
 
-
-clientfolder1=temp
-clientfolder2=temp
-clientfolder3=temp
-gdrive1=/gdrive1/
-gdrive2=/gdrive2/
 
 ######################### VARIABLE YG TIDAK DIUBAH ########################
 N=0
@@ -34,106 +27,69 @@ initiate1=0
 initiate2=0
 initiate_start=0
 export ftp_1=0
+export mount_gdrive3=`df -h | grep gdrive3 | wc -l`
+
 ###########################################################################
 sudo mkdir /plot1/zip_plot && sudo chown -R ubuntu /plot1/zip_plot
-cd && cd "$gdrive1" && mkdir "$clientfolder1"
-cd && cd "$gdrive2" && mkdir "$clientfolder2"
 cd 
 find /plot1/ -maxdepth 1 -type f -delete
 find /plot3/ -maxdepth 1 -type f -delete
 find /plot1/zip_plot/ -maxdepth 1 -type f -delete
-sudo apt install mmv
+#sudo apt install mmv
 
 #################################### Proses Menandai tempat Plot ##############################
 
+
 if [ ! -f source_dir_list.txt ]; then
+	read -p "Google Cloud Nomer: " GC_Nomer
 	sleep 3
+	export gdrive1="gdrive"$(($GC_Nomer))
+	export gdrive2="gdrive"$(($GC_Nomer + 1))
+	export gdrive3="gdrive"$(($GC_Nomer + 2))
+	export clientfolder1=temp
+	export clientfolder2=temp
+	export clientfolder3=temp
+	
+	while [ `df -h | grep $gdrive1 | wc -l` -eq 0 ] || [ `df -h | grep $gdrive2 | wc -l` -eq 0 ] || [ `df -h | grep $gdrive3 | wc -l` -eq 0 ]
+	do
+	echo GOOGLE DRIVE BELUM DI MOUNT
+	sleep 60
+	done
+	
+	multi_line="/$gdrive1/
+/$gdrive2/
+/$gdrive3/"
+	echo "$multi_line" > source_dir_list.txt
+
+mkdir /"$gdrive1"/"$clientfolder1"
+mkdir /"$gdrive2"/"$clientfolder2"
+mkdir /"$gdrive3"/"$clientfolder3"
+export gdrive1=`cat source_dir_list.txt | sed -n 1P`
+export gdrive2=`cat source_dir_list.txt | sed -n 2P`
+export gdrive3=`cat source_dir_list.txt | sed -n 3P`
+export clientfolder1=temp
+export clientfolder2=temp
+export clientfolder3=temp
+
 else
-	penanda_tempat_plot_1=0
-	acak_plot_1=1
-	v_source_line_count=`cat source_dir_list.txt | wc -l`
-	count_1=0
-	tempat_plot_1()
-	{
-	while [[ $penanda_tempat_plot_1 -eq 0 && $count_1 -le $v_source_line_count ]];
+	export gdrive1=`cat source_dir_list.txt | sed -n 1P | sed 's/^\///;s/\// /g'`
+	export gdrive2=`cat source_dir_list.txt | sed -n 2P | sed 's/^\///;s/\// /g'`
+	export gdrive3=`cat source_dir_list.txt | sed -n 3P | sed 's/^\///;s/\// /g'`
+	export clientfolder1=temp
+	export clientfolder2=temp
+	export clientfolder3=temp
+	sleep 3
+	while [ `df -h | grep $gdrive1 | wc -l` -eq 0 ] || [ `df -h | grep $gdrive2 | wc -l` -eq 0 ] || [ `df -h | grep $gdrive3 | wc -l` -eq 0 ]
 	do
-		export v_source_dir=`cat source_dir_list.txt | sed -n "$N"P`
-		count_1=$(($count_1 + 1))
-		rm -rf ${v_source_dir}/`curl ifconfig.me`.txt
-		if [ `ls ${v_source_dir}/ | grep .txt | wc -l` -eq 0 ]; then
-			touch ${v_source_dir}/`curl ifconfig.me`.txt
-			acak_plot_2=$[RANDOM%60+5]
-			wait $acak_plot_2
-			while [[ `ls ${v_source_dir}/ | grep .txt | wc -l` -ge 2 && $acak_plot_1 -eq 1 ]];
-			do
-				acak_plot_2=$[RANDOM%60+5]
-				wait $acak_plot_2
-				acak_plot_1=$[RANDOM%2+1]
-				sleep 1
-			done
-			if [ `ls ${v_source_dir}/ | grep .txt | wc -l` -eq 1 ]; then
-				penanda_tempat_plot_1=1
-				gdrive1=${v_source_dir}
-				suffix="temp"
-				gdrive1=${gdrive1%"$suffix"}
-			else
-				echo cari gdrive lain
-			fi
-		else
-			echo cari gdrive lain
-		fi
+		echo GOOGLE DRIVE BELUM DI MOUNT
+		sleep 60
 	done
-
-	}
-	if [ $penanda_tempat_plot_1 -eq 0 ]; then
-	count_1=0
-	tempat_plot_1
-	fi
-	penanda_tempat_plot_2=0
-	acak_plot_1=1
-	v_source_line_count=`cat source_dir_list.txt | wc -l`
-	count_2=0
-	tempat_plot_2()
-	{
-	while [[ $penanda_tempat_plot_2 -eq 0 && $count_2 -le $v_source_line_count ]];
-	do
-		export v_source_dir=`cat source_dir_list.txt | sed -n "$N"P`
-		count_2=$(($count_2 + 1))
-		if [ "$gdrive1""temp" = "$v_source_dir" ]; then
-			echo skip "$v_source_dir" karena sudah dipake sebagai tempat plot no 1
-			sleep 10
-		else
-			rm -rf ${v_source_dir}/`curl ifconfig.me`.txt
-			if [ `ls ${v_source_dir}/ | grep .txt | wc -l` -eq 0 ]; then
-				touch ${v_source_dir}/`curl ifconfig.me`.txt
-				acak_plot_2=$[RANDOM%60+5]
-				wait $acak_plot_2
-				while [[ `ls ${v_source_dir}/ | grep .txt | wc -l` -ge 2 && $acak_plot_1 -eq 1 ]];
-				do
-					acak_plot_2=$[RANDOM%60+5]
-					wait $acak_plot_2
-					acak_plot_1=$[RANDOM%2+1]
-					sleep 1
-				done
-				if [ `ls ${v_source_dir}/ | grep .txt | wc -l` -eq 1 ]; then
-					penanda_tempat_plot_2=1
-					gdrive2=${v_source_dir}
-					suffix="temp"
-					gdrive2=${gdrive2%"$suffix"}
-				else
-					echo cari gdrive lain
-				fi
-			else
-				echo cari gdrive lain
-			fi
-		fi
-	done
-
-	}
-	if [ $penanda_tempat_plot_2 -eq 0 ]; then
-	count_2=0
-	tempat_plot_2
-	fi
+	export gdrive1=`cat source_dir_list.txt | sed -n 1P`
+	export gdrive2=`cat source_dir_list.txt | sed -n 2P`
+	export gdrive3=`cat source_dir_list.txt | sed -n 3P`
+	export clientfolder1=temp
+	export clientfolder2=temp
+	export clientfolder3=temp
 fi
 
 ###########################################################################
@@ -146,9 +102,8 @@ if [ $initiate_start -eq 1 ]; then
 		rm -rf skripburu2
 		git clone https://github.com/Rickyose/skripburu2
 		sleep 30
-		cd skripburu2
-		chmod +x buru2.sh
-		./buru2.sh 
+		chmod +x /home/ubuntu/skripburu2/buru2.sh
+		/home/ubuntu/skripburu2/buru2.sh 
 		sleep 3600
 	done
 fi
@@ -174,19 +129,18 @@ if [ $initiate_start -eq 1 ]; then
 
 		mkdir /home/ubuntu/Documents/
 		sleep 5
-		cd /home/ubuntu/Documents/
-		rm -rf "$ip".json
+		rm -rf /home/ubuntu/Documents/"$ip".json
 		while [ `ls | grep "$ip".json | wc -l` -gt 0 ]
 		do
 			sleep 5
-			rm -rf "$ip".json
+			rm -rf /home/ubuntu/Documents/"$ip".json
 		done
 		echo "$multi_line"
 		echo "$multi_line" > /home/ubuntu/Documents/"$ip".json
 		if [ `ps ux | grep "python3 -m http.server" | grep -v "grep" | awk '{print $2}'` -gt 0 ]; then
 			sleep 1
 		else
-			python3 -m http.server
+			python3 -m http.server --directory /home/ubuntu/Documents/
 		fi
 	fi
 fi
@@ -198,20 +152,44 @@ acak_1=$[RANDOM%999999999999+100000000000]
 ada_plot_1=`find /plot1/zip_plot/ -name "*.plot" | wc -l`
 sukses_send_plot_1=0
 
+while [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]
+do
+	if [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]; then
+		mv /plot1/zip_plot/*.zip "$gdrive1""$clientfolder1"
+		sukses_send_plot_1=1
+	fi
+	if [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]; then
+		mv /plot1/zip_plot/*.zip "$gdrive2""$clientfolder2"
+		sukses_send_plot_2=1
+	fi
+	if [ $mount_gdrive3 -eq 1 ]; then
+		if [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]; then
+			mv /plot1/zip_plot/*.zip "$gdrive3""$clientfolder3"
+			sukses_send_plot_3=1
+		fi
+	fi
+	sleep 120
+done
+
+
 while [ $sukses_send_plot_1 -eq 0 ]
 do
 	while [ $ada_plot_1 -ge 2 ]; do
 		echo ZIP PROSES BERJALAN
-		cd /plot1/zip_plot/ 
-		pwd && echo `ls`
-		sudo -u root nice --1 zip -r -0 -m $acak_1.zip *plot && sudo -u root chown -R ubuntu *.zip && sudo -u ubuntu chmod 777 *.zip 
-		mv *.zip "$gdrive1""$clientfolder1"
+		sudo -u root nice --1 zip -r -0 -m /plot1/zip_plot/$acak_1.zip /plot1/zip_plot/*plot && sudo -u root chown -R ubuntu /plot1/zip_plot/*.zip && sudo -u ubuntu chmod 777 /plot1/zip_plot/*.zip 
+		mv /plot1/zip_plot/*.zip "$gdrive1""$clientfolder1"
 		send_zip_1=`find "$gdrive1""$clientfolder1" -name "$acak_1.zip" | wc -l`
 		sukses_send_plot_1=1
 		if [ $send_zip_1 -gt 0 ]; then
 			echo "SUKSES Pindahkan $acak_1.zip ke "$gdrive1""$clientfolder1""
 		else
 			echo "==================================== GAGAL Pindahkan $acak_1.zip ke "$gdrive1""$clientfolder1" ========================================================="
+			#while [ `find /plot1/zip_plot/ -name "$acak_1.zip" | wc -l` -gt 0 ]
+			#do
+			#sleep 30
+			#find /plot1/zip_plot/ -type f -name "$acak_1.zip" -delete
+			#sleep 30
+			#done
 		fi
 		ada_plot_1=`find /plot1/zip_plot/ -name "*.plot" | wc -l`
 		sleep 60
@@ -225,14 +203,31 @@ acak_2=$[RANDOM%999999999999+100000000000]
 ada_plot_2=`find /plot1/zip_plot/ -name "*.plot" | wc -l`
 sukses_send_plot_2=0
 
+while [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]
+do
+	if [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]; then
+		mv /plot1/zip_plot/*.zip "$gdrive1""$clientfolder1"
+		sukses_send_plot_1=1
+	fi
+	if [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]; then
+		mv /plot1/zip_plot/*.zip "$gdrive2""$clientfolder2"
+		sukses_send_plot_2=1
+	fi
+	if [ $mount_gdrive3 -eq 1 ]; then
+		if [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]; then
+			mv /plot1/zip_plot/*.zip "$gdrive3""$clientfolder3"
+			sukses_send_plot_3=1
+		fi
+	fi
+	sleep 120
+done
+
 while [ $sukses_send_plot_2 -eq 0 ]
 do
 	while [ $ada_plot_2 -ge 2 ]; do
 		echo ZIP PROSES BERJALAN
-		cd /plot1/zip_plot/ 
-		pwd && echo `ls`
-		sudo -u root nice --1 zip -r -0 -m $acak_2.zip *plot && sudo -u root chown -R ubuntu *.zip && sudo -u ubuntu chmod 777 *.zip
-		mv *.zip "$gdrive2""$clientfolder2"
+		sudo -u root nice --1 zip -r -0 -m /plot1/zip_plot/$acak_2.zip /plot1/zip_plot/*plot && sudo -u root chown -R ubuntu /plot1/zip_plot/*.zip && sudo -u ubuntu chmod 777 /plot1/zip_plot/*.zip
+		mv /plot1/zip_plot/*.zip "$gdrive2""$clientfolder2"
 		send_zip_2=`find "$gdrive2""$clientfolder2" -name "$acak_2.zip" | wc -l`
 		sukses_send_plot_2=1
 		if [ $send_zip_2 -gt 0 ]; then
@@ -248,7 +243,51 @@ do
 	sleep 60
 done
 
+if [ $mount_gdrive3 -eq 1 ]; then
+acak_3=$[RANDOM%999999999999+100000000000]
+ada_plot_3=`find /plot1/zip_plot/ -name "*.plot" | wc -l`
+sukses_send_plot_3=0
 
+while [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]
+do
+	if [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]; then
+		mv /plot1/zip_plot/*.zip "$gdrive1""$clientfolder1"
+		sukses_send_plot_1=1
+	fi
+	if [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]; then
+		mv /plot1/zip_plot/*.zip "$gdrive2""$clientfolder2"
+		sukses_send_plot_2=1
+	fi
+	if [ $mount_gdrive3 -eq 1 ]; then
+		if [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 0 ]; then
+			mv /plot1/zip_plot/*.zip "$gdrive3""$clientfolder3"
+			sukses_send_plot_3=1
+		fi
+	fi
+	sleep 120
+done
+
+while [ $sukses_send_plot_3 -eq 0 ]
+do
+	while [ $ada_plot_3 -ge 2 ]; do
+		echo ZIP PROSES BERJALAN
+		sudo -u root nice --1 zip -r -0 -m /plot1/zip_plot/$acak_3.zip /plot1/zip_plot/*plot && sudo -u root chown -R ubuntu /plot1/zip_plot/*.zip && sudo -u ubuntu chmod 777 /plot1/zip_plot/*.zip
+		mv /plot1/zip_plot/*.zip "$gdrive3""$clientfolder3"
+		send_zip_3=`find "$gdrive3""$clientfolder3" -name "$acak_3.zip" | wc -l`
+		sukses_send_plot_3=1
+		if [ $send_zip_3 -gt 0 ]; then
+			echo "SUKSES Pindahkan $acak_3.zip ke "$gdrive3""$clientfolder3""
+		else
+			echo "==================================== GAGAL Pindahkan $acak_3.zip ke "$gdrive3""$clientfolder3" ========================================================="
+		fi
+		ada_plot_3=`find /plot1/zip_plot/ -name "*.plot" | wc -l`
+		sleep 60
+	done
+	ada_plot_3=`find /plot1/zip_plot/ -name "*.plot" | wc -l`
+	echo "WAIT ADA PLOT UNTuK GDRIVE 3"
+	sleep 60
+done
+fi
 
 
 if [ $initiate_start -eq 1 ]; then
@@ -259,89 +298,24 @@ fi
 start:
 
 if [ $initiate_start -eq 1 ]; then
-	while [ $N -le $amountplot ]
-	do
-	 while [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 1 ]
-	 do
-		 echo "PLOT LEBIH DARI 3, AWAS PLOTTING OVER CAPACITY"
-		 sleep 60
-	 done
-	 sudo fstrim -v /plot1
-	 cd /home/ubuntu/chia-plotter/build/ && ./chia_plot --rmulti2 2 -n 2 -r 4 -u 512 -v 128 -t /plot1/ -d /plot1/zip_plot/ -c "$poolkey" -f "$farmkey"
-	 echo "PRESS CTRL+C to cancel script"
-	 sleep 20
-	 cd
-	 while [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 1 ]
-	 do
-		 echo "PLOT LEBIH DARI 3, AWAS PLOTTING OVER CAPACITY"
-		 sleep 60
-	 done
-	 sudo fstrim -v /plot1
-	 cd /home/ubuntu/chia-plotter/build/ && ./chia_plot --rmulti2 2 -n 2 -r 4 -u 512 -v 128 -t /plot1/ -d /plot1/zip_plot/ -c "$poolkey" -f "$farmkey"
-	 echo "PRESS CTRL+C to cancel script"
-	 sleep 20
-	 cd 
-	 N=$(($N + 4))
-	 echo Mengerjakan Plot Order $clientfolder1 Jumlah Plot yang dikerjakan sudah $N
-	 ##########################
-	 gdrive1_total_plot=`find "$gdrive1""$clientfolder1"/ -type f -size +200G -printf 1 | wc -c`
-	 gdrive2_total_plot=`find "$gdrive2""$clientfolder2"/ -type f -size +200G -printf 1 | wc -c`
-	 new_total_plot=$((($gdrive1_total_plot + $gdrive2_total_plot)*2))
-	 echo "KIRIM PESAN KE ftp"
-	 ftp_script &
-	 #if [ $ftp_1 -eq 0 ]; then
-	 #export ftp_1=1
-	 #echo "KIRIM PESAN KE ftp"
-	 #ftp_script &
-	 #fi
-	done
-fi
-
-################################################ SETTING UNTUK PLOT SENDIRI ##########################################################
-
-
-
-farmkey=b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
-poolkey=xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn
-amountplot=0 #jumlah plot yg dihasilkan adalah, value ini dikali 4
-clientfolder1=temp
-clientfolder2=temp
-clientfolder3=temp
-
-cd && cd "$gdrive1" && mkdir "$clientfolder1"
-cd && cd "$gdrive2" && mkdir "$clientfolder2"
-cd 
-
-
-if [ $initiate_start -eq 1 ]; then
 	while [ 100 -gt 1 ]
 	do
-	 while [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 1 ]
+	 while [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 1 ] || [ `find /plot1/zip_plot/ -name "*.zip" | wc -l`-gt 2 ]
 	 do
 		 echo "PLOT LEBIH DARI 3, AWAS PLOTTING OVER CAPACITY"
 		 sleep 60
 	 done
 	 sudo fstrim -v /plot1
-	 cd /home/ubuntu/chia-plotter/build/ && ./chia_plot --rmulti2 2 -n 2 -r 4 -u 512 -v 128 -t /plot1/ -d /plot1/zip_plot/ -c "$poolkey" -f "$farmkey"
+	 /home/ubuntu/chia-plotter/build/chia_plot --rmulti2 2 -n 2 -r 4 -u 512 -v 128 -t /plot1/ -d /plot1/zip_plot/ -c "$poolkey" -f "$farmkey"
 	 echo "PRESS CTRL+C to cancel script"
 	 sleep 20
-	 cd 
-	 while [ `find /plot1/zip_plot/ -name "*.zip" | wc -l` -gt 1 ]
-	 do
-		 echo "PLOT LEBIH DARI 3, AWAS PLOTTING OVER CAPACITY"
-		 sleep 60
-	 done
-	 sudo fstrim -v /plot1
-	 cd /home/ubuntu/chia-plotter/build/ && ./chia_plot --rmulti2 2 -n 2 -r 4 -u 512 -v 128 -t /plot1/ -d /plot1/zip_plot/ -c "$poolkey" -f "$farmkey"
-	 echo "PRESS CTRL+C to cancel script"
-	 sleep 20
-	 cd 
-	 N=$(($N + 4))
+	 N=$(($N + 2))
 	 echo Mengerjakan Plot Order $clientfolder1 Jumlah Plot yang dikerjakan sudah $N
 	 ####################
 	 gdrive1_total_plot=`find "$gdrive1""$clientfolder1"/ -type f -size +200G -printf 1 | wc -c`
 	 gdrive2_total_plot=`find "$gdrive2""$clientfolder2"/ -type f -size +200G -printf 1 | wc -c`
-	 new_total_plot=$((($gdrive1_total_plot + $gdrive2_total_plot)*2))
+	 gdrive3_total_plot=`find "$gdrive3""$clientfolder3"/ -type f -size +200G -printf 1 | wc -c`
+	 new_total_plot=$((($gdrive1_total_plot + $gdrive2_total_plot + $gdrive3_total_plot)*2))
 	 echo "KIRIM PESAN KE ftp"
 	 ftp_script &
 	 #if [ $ftp_1 -eq 0 ]; then
@@ -352,15 +326,6 @@ if [ $initiate_start -eq 1 ]; then
 	done
 fi
 
-selesai1()
-{
-sleep 3
-}
-
-selesai2()
-{
-sleep 3
-}
 
 if [ $initiate_start -eq 0 ]; then
 echo Semua sudah di Inisiasi

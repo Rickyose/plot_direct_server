@@ -1,4 +1,4 @@
-# plot_server PASTIKAN SUDAH ROOT
+# plot_direct_server PASTIKAN SUDAH ROOT
 
 sudo su root
 

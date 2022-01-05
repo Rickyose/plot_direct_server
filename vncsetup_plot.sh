@@ -143,7 +143,7 @@ cd /home/ubuntu/
 ############################# write out current crontab #############################
 sudo -u ubuntu crontab -l > mycron
 #echo new cron into cron file
-sudo -u ubuntu echo "@reboot sudo -u ubuntu vncserver && bash /home/ubuntu/plot_server/plot_start.sh" >> mycron
+sudo -u ubuntu echo "@reboot sudo -u ubuntu vncserver && bash /home/ubuntu/plot_start.sh" >> mycron
 #install new cron file
 sudo -u ubuntu crontab mycron
 sudo -u ubuntu rm -rf mycron 

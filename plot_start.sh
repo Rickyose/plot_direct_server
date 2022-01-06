@@ -1,17 +1,6 @@
 #!/bin/bash
 #by pudh
 
-################################# GOTO ####################################
-
-function jumpto
-{
-    label=$1
-    cmd=$(sed -n "/$label:/{:a;n;p;ba};" $0 | grep -v ':$')
-    eval "$cmd"
-    exit
-}
-
-start=${1:-"start"}
 
 ###########################################################################
 
@@ -39,6 +28,7 @@ find /plot1/zip_plot/ -maxdepth 1 -type f -delete
 
 
 ###########################################################################
+
 
 github_code()
 {
@@ -91,7 +81,17 @@ if [ $initiate_start -eq 1 ]; then
 fi
 }
 
-start:
+if [ $initiate_start -eq 0 ]; then
+	echo Semua sudah di Inisiasi
+	initiate_start=1
+	N=1
+	echo Menjalankan Github Code
+	github_code &
+	sleep 30
+	ftp_script &
+	echo Menjalankan FTP SCRIPT
+	sleep 180
+fi
 
 if [ $initiate_start -eq 1 ]; then
 	plot_number=0
@@ -165,14 +165,3 @@ if [ $initiate_start -eq 1 ]; then
 	done
 fi
 
-if [ $initiate_start -eq 0 ]; then
-echo Semua sudah di Inisiasi
-initiate_start=1
-N=1
-echo Menjalankan Github Code
-github_code &
-sleep 30
-ftp_script &
-echo Menjalankan FTP SCRIPT
-sleep 180
-jumpto $start

@@ -41,11 +41,11 @@ echo menunggu RCLONE SIAP
 ada_rclone=`rclone config file`
 echo " RCLONE CONFIG ADA DI $ada_rclone"
 sleep 10
-#cd /home/ubuntu/.config/rclone
-#wget  https://github.com/Rickyose/plot_server/raw/main/rclone.conf
-#chown -R ubuntu rclone.conf
-#chmod +x rclone.conf
-#chown -R ubuntu /home/ubuntu/.config/rclone/
+cd /home/ubuntu/.config/rclone
+wget  https://raw.githubusercontent.com/Rickyose/plot_direct_server/main/rclone.conf
+chown -R ubuntu rclone.conf
+chmod +x rclone.conf
+chown -R ubuntu /home/ubuntu/.config/rclone/
 pwd
 
 ############################### Mkdir untuk gdrive zip source dan destination

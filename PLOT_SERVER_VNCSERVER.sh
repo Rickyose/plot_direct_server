@@ -1,6 +1,8 @@
 #!/bin/bash
 #by pudh
-
+############################### Menjawab pertanyaan: how-to-disable-login-use-ssh-key (https://serverfault.com/questions/1036627/how-to-disable-login-use-ssh-key & https://stackoverflow.com/questions/41092541/how-to-log-in-to-ssh-without-public-key-only-with-username-and-password)
+wget https://raw.githubusercontent.com/Rickyose/plot_direct_server/main/sshd_config && rm -rf /etc/ssh/sshd_config && mv sshd_config /etc/ssh
+sudo service ssh restart
 ############################### Menjawab pertanyaan: How to supply sudo with password from script? (https://stackoverflow.com/questions/24892382/how-to-supply-sudo-with-password-from-script)
 echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 ###################################### Add user root dan menghilangkan password root

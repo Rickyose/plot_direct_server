@@ -2,7 +2,7 @@
 #by monsune@freelancer
 
 cd &&  cd /
-mount /dev/nvme0n1 /plot1 && mount /dev/sdb /plot3
+# mount /dev/nvme0n1 /plot1 && mount /dev/sdb /plot3
 sudo -u root chown -R root /gdrive1
 sudo -u root chown -R root /gdrive2
 sudo -u root chown -R root /gdrive3

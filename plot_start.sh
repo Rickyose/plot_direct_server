@@ -120,7 +120,7 @@ if [ $initiate_start -eq 1 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive1/cha/
 				if [ `wc -c /gdrive1/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
 					# Ini -u 512 dan -v 128 diubah jadi -u 128 dan tidak pake -v, coba dilihat effisiensi harga VM/day nya dengan kecepatan plotnya jika lebih efisien jangan dirubah
-					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 4 -u 128 -k 33 -t /plot1/ -d /gdrive1/cha/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976 &
+					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 4 -u 128 -k 33 -t /plot1/ -d /gdrive1/cha/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive1/cha/gdrive_daily_limit.txt
 					plot_number=1
@@ -146,7 +146,7 @@ if [ $initiate_start -eq 1 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive2/cha/
 				if [ `wc -c /gdrive2/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
 					# Ini -u 512 dan -v 128 diubah jadi -u 128 dan tidak pake -v, coba dilihat effisiensi harga VM/day nya dengan kecepatan plotnya jika lebih efisien jangan dirubah
-					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 4 -u 128 -k 33 -t /plot1/ -d /gdrive2/cha/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976 &
+					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 4 -u 128 -k 33 -t /plot1/ -d /gdrive2/cha/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive2/cha/gdrive_daily_limit.txt
 					plot_number=2
@@ -172,7 +172,7 @@ if [ $initiate_start -eq 1 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive3/cha/
 				if [ `wc -c /gdrive3/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
 					# Ini -u 512 dan -v 128 diubah jadi -u 128 dan tidak pake -v, coba dilihat effisiensi harga VM/day nya dengan kecepatan plotnya jika lebih efisien jangan dirubah
-					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 4 -u 128 -k 33 -t /plot1/ -d /gdrive3/cha/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976 &
+					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 4 -u 128 -k 33 -t /plot1/ -d /gdrive3/cha/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive2/cha/gdrive_daily_limit.txt
 					plot_number=3

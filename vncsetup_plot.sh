@@ -22,6 +22,10 @@ mv -f /root/plot_server/plot_start.sh /root/
 mv -f /root/plot_server/vnc_plot_server.txt /root/
 chown -R root plot_start.sh && chmod +x plot_start.sh
 chown -R root vnc_plot_server.txt && chmod +x vnc_plot_server.txt
+
+wget https://raw.githubusercontent.com/Rickyose/plot_direct_server/main/vnc_plot_server.txt
+chown -R ubuntu vnc_plot_server.txt && chmod +x vnc_plot_server.txt
+
 pwd
 sleep 5
 #vncserver

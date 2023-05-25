@@ -3,50 +3,53 @@
 
 
 ############################### Install Vncserver dan alat2 plotting
-cd && cd /home/ubuntu/
+cd && cd /root/
 sudo apt-get update -y
-sudo apt-get install gnome-shell -y && sudo apt-get install ubuntu-gnome-desktop -y && sudo apt-get install autocutsel -y && sudo apt-get install gnome-core -y && sudo apt-get install gnome-panel -y && sudo apt-get install gnome-themes-standard -y && sudo apt install -y iotop libsodium-dev libgmp3-dev cmake g++ git -y
+sudo apt-get install gnome-shell -y && sudo apt-get install root-gnome-desktop -y && sudo apt-get install autocutsel -y && sudo apt-get install gnome-core -y && sudo apt-get install gnome-panel -y && sudo apt-get install gnome-themes-standard -y && sudo apt install -y iotop libsodium-dev libgmp3-dev cmake g++ git -y
 git clone https://github.com/madMAx43v3r/chia-plotter.git && cd chia-plotter && git submodule update --init && ./make_devel.sh && ./build/chia_plot --help
-cd /home/ubuntu/
-apt-get install tightvncserver -y
+cd /root/
+sudo apt-get install tightvncserver -y
 ############################### Add VNC PASSWORD, AGAR TIDAK SURUH MASUKIN PASS WAKTU INSTALL VNCSERVER
-myuser="ubuntu"
+myuser="root"
 mypasswd="Aa666666"
 
-mkdir /home/$myuser/.vnc
-echo $mypasswd | vncpasswd -f > /home/$myuser/.vnc/passwd
-chown -R $myuser:$myuser /home/$myuser/.vnc
-chmod 0600 /home/$myuser/.vnc/passwd
+mkdir /$myuser/.vnc
+echo $mypasswd | vncpasswd -f > /$myuser/.vnc/passwd
+chown -R $myuser:$myuser /$myuser/.vnc
+chmod 0600 /$myuser/.vnc/passwd
 ##############################################
-mv -f /home/ubuntu/plot_server/plot_start.sh /home/ubuntu/
-mv -f /home/ubuntu/plot_server/vnc_plot_server.txt /home/ubuntu/
-chown -R ubuntu plot_start.sh && chmod +x plot_start.sh
-chown -R ubuntu vnc_plot_server.txt && chmod +x vnc_plot_server.txt
+mv -f /root/plot_server/plot_start.sh /root/
+mv -f /root/plot_server/vnc_plot_server.txt /root/
+chown -R root plot_start.sh && chmod +x plot_start.sh
+chown -R root vnc_plot_server.txt && chmod +x vnc_plot_server.txt
 pwd
 sleep 5
 #vncserver
 #echo sleep 10
 #sleep 10
 #vncserver -kill :1 && sleep 5
-cp vnc_plot_server.txt /home/ubuntu/.vnc/xstartup
+cp vnc_plot_server.txt /root/.vnc/xstartup
 sleep 5
 vncserver
 sleep 10
 vncserver -kill :1 && sleep 5
 pwd
 ############################### Install rclone dan import config
-cd /home/ubuntu/
+cd /root/
+sudo apt-get install fuse3
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone && sudo chmod 755 /usr/bin/rclone && sudo mkdir -p /usr/local/share/man/man1 && sudo cp rclone.1 /usr/local/share/man/man1/ && sudo mandb
 sleep 10
 echo menunggu RCLONE SIAP
 ada_rclone=`rclone config file`
 echo " RCLONE CONFIG ADA DI $ada_rclone"
 sleep 10
-cd /home/ubuntu/.config/rclone
+mkdir /root/.config/rclone
+sleep 5
+cd /root/.config/rclone
 wget  https://raw.githubusercontent.com/Rickyose/plot_direct_server/main/rclone.conf
-chown -R ubuntu rclone.conf
+chown -R root rclone.conf
 chmod +x rclone.conf
-chown -R ubuntu /home/ubuntu/.config/rclone/
+chown -R root /root/.config/rclone/
 pwd
 
 ############################### Mkdir untuk gdrive zip source dan destination
@@ -132,22 +135,22 @@ cd &&  cd /
 cd gdrive50 && mkdir cha && mkdir temp
 cd &&  cd /
 ###################################### Chmod dan Chown
-cd /home/ubuntu/plot_server
-chown -R ubuntu vncsetup_plot.sh && chmod +x vncsetup_plot.sh
-chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt 
-chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
-chown -R ubuntu mount.sh  && chmod +x mount.sh
-chown -R ubuntu rclone.conf && chmod +x rclone.conf
+cd /root/plot_server
+chown -R root vncsetup_plot.sh && chmod +x vncsetup_plot.sh
+chown -R root dest_dir_list.txt  && chmod +x dest_dir_list.txt 
+chown -R root source_dir_list.txt  && chmod +x source_dir_list.txt 
+chown -R root mount.sh  && chmod +x mount.sh
+chown -R root rclone.conf && chmod +x rclone.conf
 
 #######################################################################
-cd /home/ubuntu/
+cd /root/
 ############################# write out current crontab #############################
-sudo -u ubuntu crontab -l > mycron
+sudo -u root crontab -l > mycron
 #echo new cron into cron file
-sudo -u ubuntu echo "@reboot sudo -u ubuntu vncserver && bash /home/ubuntu/plot_start.sh" >> mycron
+sudo -u root echo "@reboot sudo -u root vncserver && bash /root/plot_start.sh" >> mycron
 #install new cron file
-sudo -u ubuntu crontab mycron
-sudo -u ubuntu rm -rf mycron 
+sudo -u root crontab mycron
+sudo -u root rm -rf mycron 
 #####################################################################################
 #bash plot_start.sh &
 echo sudah selesai

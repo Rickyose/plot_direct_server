@@ -3,12 +3,12 @@
 
 
 ############################### Install Vncserver dan alat2 plotting
-cd /home/ubuntu/
-sudo apt-get update -y && sudo apt-get upgrade -y
+cd && cd /home/ubuntu/
+sudo apt-get update -y
 sudo apt-get install gnome-shell -y && sudo apt-get install ubuntu-gnome-desktop -y && sudo apt-get install autocutsel -y && sudo apt-get install gnome-core -y && sudo apt-get install gnome-panel -y && sudo apt-get install gnome-themes-standard -y && sudo apt install -y iotop libsodium-dev libgmp3-dev cmake g++ git -y
 git clone https://github.com/madMAx43v3r/chia-plotter.git && cd chia-plotter && git submodule update --init && ./make_devel.sh && ./build/chia_plot --help
 cd /home/ubuntu/
-sudo apt-get install tightvncserver -y
+apt-get install tightvncserver -y
 ############################### Add VNC PASSWORD, AGAR TIDAK SURUH MASUKIN PASS WAKTU INSTALL VNCSERVER
 myuser="ubuntu"
 mypasswd="Aa666666"
@@ -24,14 +24,15 @@ chown -R ubuntu plot_start.sh && chmod +x plot_start.sh
 chown -R ubuntu vnc_plot_server.txt && chmod +x vnc_plot_server.txt
 pwd
 sleep 5
-vncserver
-echo sleep 10
-sleep 10
-vncserver -kill :1 && sleep 5
+#vncserver
+#echo sleep 10
+#sleep 10
+#vncserver -kill :1 && sleep 5
 cp vnc_plot_server.txt /home/ubuntu/.vnc/xstartup
 sleep 5
 vncserver
 sleep 10
+vncserver -kill :1 && sleep 5
 pwd
 ############################### Install rclone dan import config
 cd /home/ubuntu/

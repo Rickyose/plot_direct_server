@@ -7,7 +7,7 @@ sudo service ssh restart
 echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 ###################################### Add user root dan menghilangkan password root
 adduser --disabled-password --gecos "" root
-echo 'root:Duri8490' | sudo chpasswd
+echo 'ubuntu:Duri8490' | sudo chpasswd
 ############################## Install Server
 sudo apt-get update -y
 apt-get install -y unzip

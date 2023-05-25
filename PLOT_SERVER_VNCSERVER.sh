@@ -7,7 +7,7 @@ echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 adduser --disabled-password --gecos "" ubuntu
 echo 'ubuntu:Duri8490' | sudo chpasswd
 ############################## Install Server
-sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get update -y
 apt-get install -y unzip
 apt-get install zip -y
 apt-get install -y ifstat

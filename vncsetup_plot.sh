@@ -32,7 +32,10 @@ cp vnc_plot_server.txt /root/.vnc/xstartup
 sleep 5
 vncserver
 sleep 10
-vncserver -kill :1 && sleep 5
+vncserver -kill :1
+sleep 5
+vncserver
+sleep 10
 pwd
 ############################### Install rclone dan import config
 cd /root/

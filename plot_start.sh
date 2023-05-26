@@ -100,11 +100,10 @@ if [ $initiate_start -eq 1 ]; then
 	mkdir /gdrive1/cha/
 	sudo -u root rclone mount --allow-non-empty --daemon gdrive2: /gdrive2 && chmod 777 /gdrive2 && chown -R root /gdrive2
 	mkdir /gdrive2/cha/
-	sudo -u root rclone mount --allow-non-empty --daemon gdrive3: /gdrive2 && chmod 777 /gdrive3 && chown -R root /gdrive3
-	mkdir /gdrive3/cha/
+
 	while [ 1 -gt 0 ]
 	do
-		if [ $plot_number -eq 3 ]; then
+		if [ $plot_number -eq 2 ]; then
 			sudo fstrim -v /plot1
 			plot_number=0
 		fi
@@ -120,9 +119,12 @@ if [ $initiate_start -eq 1 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive1/cha/
 				if [ `wc -c /gdrive1/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
 					# Ini -u 512 dan -v 128 diubah jadi -u 128 dan tidak pake -v, coba dilihat effisiensi harga VM/day nya dengan kecepatan plotnya jika lebih efisien jangan dirubah
-					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 4 -u 128 -k 33 -t /plot1/ -d /gdrive1/cha/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
+					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 2 -u 256 -k 33 -t /plot1/ -d /plot1/zip_plot/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive1/cha/gdrive_daily_limit.txt
+					acak_1=$[RANDOM%999999999999+100000000000]
+					sudo -u root nice --1 zip -r -0 -m /plot1/zip_plot/$acak_1.zip /plot1/zip_plot/*plot
+					mv /plot1/zip_plot/*.zip /gdrive1/cha/ &
 					plot_number=1
 				else
 					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
@@ -146,9 +148,12 @@ if [ $initiate_start -eq 1 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive2/cha/
 				if [ `wc -c /gdrive2/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
 					# Ini -u 512 dan -v 128 diubah jadi -u 128 dan tidak pake -v, coba dilihat effisiensi harga VM/day nya dengan kecepatan plotnya jika lebih efisien jangan dirubah
-					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 4 -u 128 -k 33 -t /plot1/ -d /gdrive2/cha/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
+					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 2 -u 256 -k 33 -t /plot1/ -d /plot1/zip_plot/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive2/cha/gdrive_daily_limit.txt
+					acak_1=$[RANDOM%999999999999+100000000000]
+					sudo -u root nice --1 zip -r -0 -m /plot1/zip_plot/$acak_1.zip /plot1/zip_plot/*plot
+					mv /plot1/zip_plot/*.zip /gdrive2/cha/ &
 					plot_number=2
 				else
 					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 2"
@@ -160,32 +165,7 @@ if [ $initiate_start -eq 1 ]; then
 				
 			fi
 		done
-		sleep 30s
-		echo "PLOT Number 3"
-		while [ $plot_number -eq 2 ]
-		do
-			sleep 10s
-			if [ `ls /plot1 | wc -l` -le 2 ]; then
-				if [ `ls /plot1 | wc -l` -eq 2 ]; then
-					ls -t | tail -1 | xargs rm -f
-				fi
-				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive3/cha/
-				if [ `wc -c /gdrive3/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
-					# Ini -u 512 dan -v 128 diubah jadi -u 128 dan tidak pake -v, coba dilihat effisiensi harga VM/day nya dengan kecepatan plotnya jika lebih efisien jangan dirubah
-					/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 4 -u 128 -k 33 -t /plot1/ -d /gdrive3/cha/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
-					rm -rf /root/gdrive_daily_limit.txt
-					rm -rf /gdrive2/cha/gdrive_daily_limit.txt
-					plot_number=3
-				else
-					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 2"
-					sleep 10s
-					rm -rf /root/gdrive_daily_limit.txt
-					rm -rf /gdrive2/cha/gdrive_daily_limit.txt
-					plot_number=3
-				fi
-				
-			fi
-		done
+
 		
 		####################
 		 gdrive1_total_plot=`find /gdrive1/cha/ -type f -size +200G -printf 1 | wc -c`

@@ -85,6 +85,7 @@ plot_mover()
 {
 if [ $initiate_start -eq 1 ]; then
 	while [ 100 -gt 1 ]
+	do
 		if [ `find /gdrive1/cha -type f -size +100G | wc -l` -eq 0 && `wc -c /gdrive1/cha/gdrive_daily_limit.txt | awk '{print $1}'` -eq 0 ]; then
 			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive1/cha/
 			if [ `wc -c /gdrive1/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
@@ -265,4 +266,3 @@ if [ $initiate_start -eq 1 ]; then
 		
 	done
 fi
-

@@ -86,126 +86,110 @@ plot_mover()
 if [ $initiate_start -eq 1 ]; then
 	while [ 100 -gt 1 ]
 	do
-		if [ `find /gdrive1/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
-			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive1/cha/
-			if [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
-				mv /plot1/zip_plot/*.zip /gdrive1/cha/
-				plot_number=1
+		if [ `find /plot1/zip_plot/ -type f -name "gdrive_daily_limit.txt" | wc -l` -ge 1 ]; then
+			if [ `find /gdrive1/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive1/cha/
+				if [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					mv /plot1/zip_plot/*.zip /gdrive1/cha/
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive1/cha/gdrive_daily_limit.txt
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive1/cha/gdrive_daily_limit.txt
+				fi
 			else
-				echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-				sleep 60s
-				rm -rf /root/gdrive_daily_limit.txt
-				rm -rf /gdrive1/cha/gdrive_daily_limit.txt
-				plot_number=1
+				sleep 3s
 			fi
-		else
-			echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-			sleep 60s
-			rm -rf /root/gdrive_daily_limit.txt
-			rm -rf /gdrive1/cha/gdrive_daily_limit.txt
-			plot_number=1
-		fi
-		sleep 5s
-		if [ `find /gdrive2/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
-			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive2/cha/
-			if [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
-				mv /plot1/zip_plot/*.zip /gdrive2/cha/
-				plot_number=1
+			sleep 5s
+			if [ `find /gdrive2/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive2/cha/
+				if [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					mv /plot1/zip_plot/*.zip /gdrive2/cha/
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive2/cha/gdrive_daily_limit.txt
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 2"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive2/cha/gdrive_daily_limit.txt
+				fi
 			else
-				echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-				sleep 60s
-				rm -rf /root/gdrive_daily_limit.txt
-				rm -rf /gdrive2/cha/gdrive_daily_limit.txt
-				plot_number=1
+				sleep 3s
 			fi
-		else
-			echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-			sleep 60s
-			rm -rf /root/gdrive_daily_limit.txt
-			rm -rf /gdrive2/cha/gdrive_daily_limit.txt
-			plot_number=1
-		fi
-		sleep 5s
-		if [ `find /gdrive3/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
-			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive3/cha/
-			if [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
-				mv /plot1/zip_plot/*.zip /gdrive3/cha/
-				plot_number=1
+			sleep 5s
+			if [ `find /gdrive3/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive3/cha/
+				if [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					mv /plot1/zip_plot/*.zip /gdrive3/cha/
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive3/cha/gdrive_daily_limit.txt
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 3"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive3/cha/gdrive_daily_limit.txt
+				fi
 			else
-				echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-				sleep 60s
-				rm -rf /root/gdrive_daily_limit.txt
-				rm -rf /gdrive3/cha/gdrive_daily_limit.txt
-				plot_number=1
+				sleep 3s
 			fi
-		else
-			echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-			sleep 60s
-			rm -rf /root/gdrive_daily_limit.txt
-			rm -rf /gdrive3/cha/gdrive_daily_limit.txt
-			plot_number=1
-		fi
-		sleep 5s
-		if [ `find /gdrive4/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
-			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive4/cha/
-			if [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
-				mv /plot1/zip_plot/*.zip /gdrive4/cha/
-				plot_number=1
+			sleep 5s
+			if [ `find /gdrive4/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive4/cha/
+				if [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					mv /plot1/zip_plot/*.zip /gdrive4/cha/
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive4/cha/gdrive_daily_limit.txt
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 4"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive4/cha/gdrive_daily_limit.txt
+				fi
 			else
-				echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-				sleep 60s
-				rm -rf /root/gdrive_daily_limit.txt
-				rm -rf /gdrive4/cha/gdrive_daily_limit.txt
-				plot_number=1
+				sleep 3s
 			fi
-		else
-			echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-			sleep 60s
-			rm -rf /root/gdrive_daily_limit.txt
-			rm -rf /gdrive4/cha/gdrive_daily_limit.txt
-			plot_number=1
-		fi
-		sleep 5s
-		if [ `find /gdrive5/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
-			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive5/cha/
-			if [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
-				mv /plot1/zip_plot/*.zip /gdrive5/cha/
-				plot_number=1
+			sleep 5s
+			if [ `find /gdrive5/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive5/cha/
+				if [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					mv /plot1/zip_plot/*.zip /gdrive5/cha/
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive5/cha/gdrive_daily_limit.txt
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 5"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive5/cha/gdrive_daily_limit.txt
+				fi
 			else
-				echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-				sleep 60s
-				rm -rf /root/gdrive_daily_limit.txt
-				rm -rf /gdrive5/cha/gdrive_daily_limit.txt
-				plot_number=1
+				sleep 3s
 			fi
-		else
-			echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-			sleep 60s
-			rm -rf /root/gdrive_daily_limit.txt
-			rm -rf /gdrive5/cha/gdrive_daily_limit.txt
-			plot_number=1
-		fi
-		sleep 5s
-		if [ `find /gdrive6/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
-			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive6/cha/
-			if [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
-				mv /plot1/zip_plot/*.zip /gdrive6/cha/
-				plot_number=1
+			sleep 5s
+			if [ `find /gdrive6/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive6/cha/
+				if [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					mv /plot1/zip_plot/*.zip /gdrive6/cha/
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive6/cha/gdrive_daily_limit.txt
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 6"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive6/cha/gdrive_daily_limit.txt
+				fi
 			else
-				echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-				sleep 60s
-				rm -rf /root/gdrive_daily_limit.txt
-				rm -rf /gdrive6/cha/gdrive_daily_limit.txt
-				plot_number=1
+				sleep 3s
 			fi
-		else
-			echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
-			sleep 60s
-			rm -rf /root/gdrive_daily_limit.txt
-			rm -rf /gdrive6/cha/gdrive_daily_limit.txt
-			plot_number=1
+			sleep 5s
 		fi
-		sleep 5s
 	done
 fi
 }
@@ -228,10 +212,18 @@ fi
 if [ $initiate_start -eq 1 ]; then
 	plot_number=0
 	sudo fstrim -v /plot1
-	sudo -u root rclone mount --allow-non-empty --daemon gdrive1: /gdrive1 && chmod 777 /gdrive1 && chown -R root /gdrive1 
 	mkdir /gdrive1/cha/
-	sudo -u root rclone mount --allow-non-empty --daemon gdrive2: /gdrive2 && chmod 777 /gdrive2 && chown -R root /gdrive2
+	sudo -u root rclone mount --allow-non-empty --daemon gdrive1: /gdrive1 && chmod 777 /gdrive1 && chown -R root /gdrive1 
 	mkdir /gdrive2/cha/
+	sudo -u root rclone mount --allow-non-empty --daemon gdrive2: /gdrive2 && chmod 777 /gdrive2 && chown -R root /gdrive2
+	mkdir /gdrive3/cha/
+	sudo -u root rclone mount --allow-non-empty --daemon gdrive3: /gdrive3 && chmod 777 /gdrive3 && chown -R root /gdrive3
+	mkdir /gdrive4/cha/
+	sudo -u root rclone mount --allow-non-empty --daemon gdrive4: /gdrive4 && chmod 777 /gdrive4 && chown -R root /gdrive4
+	mkdir /gdrive5/cha/
+	sudo -u root rclone mount --allow-non-empty --daemon gdrive5: /gdrive5 && chmod 777 /gdrive5 && chown -R root /gdrive5
+	mkdir /gdrive6/cha/
+	sudo -u root rclone mount --allow-non-empty --daemon gdrive6: /gdrive6 && chmod 777 /gdrive6 && chown -R root /gdrive6
 
 	while [ 1 -gt 0 ]
 	do

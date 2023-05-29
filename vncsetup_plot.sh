@@ -156,7 +156,7 @@ cd /root/
 ############################# write out current crontab #############################
 sudo -u root crontab -l > mycron
 #echo new cron into cron file
-sudo -u root echo "@reboot sudo -u root vncserver & bash /root/plot_server/disk.sh & sleep 300 && bash /root/plot_server/mount.sh && bash /root/plot_start.sh" >> mycron
+sudo -u root echo "@reboot sudo -u root vncserver & bash /root/plot_server/disk.sh & sleep 120 && bash /root/plot_server/mount.sh && bash /root/plot_start.sh" >> mycron
 #install new cron file
 sudo -u root crontab mycron
 sudo -u root rm -rf mycron 

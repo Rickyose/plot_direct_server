@@ -86,9 +86,9 @@ plot_mover()
 if [ $initiate_start -eq 1 ]; then
 	while [ 100 -gt 1 ]
 	do
-		if [ `find /gdrive1/cha -type f -size +100G | wc -l` -eq 0 && `wc -c /gdrive1/cha/gdrive_daily_limit.txt | awk '{print $1}'` -eq 0 ]; then
+		if [ `find /gdrive1/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive1/cha/
-			if [ `wc -c /gdrive1/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
+			if [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 				mv /plot1/zip_plot/*.zip /gdrive1/cha/
 				plot_number=1
 			else
@@ -105,9 +105,10 @@ if [ $initiate_start -eq 1 ]; then
 			rm -rf /gdrive1/cha/gdrive_daily_limit.txt
 			plot_number=1
 		fi
-		if [ `find /gdrive2/cha -type f -size +100G | wc -l` -eq 0 && `wc -c /gdrive2/cha/gdrive_daily_limit.txt | awk '{print $1}'` -eq 0 ]; then
+		sleep 5s
+		if [ `find /gdrive2/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive2/cha/
-			if [ `wc -c /gdrive2/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
+			if [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 				mv /plot1/zip_plot/*.zip /gdrive2/cha/
 				plot_number=1
 			else
@@ -124,9 +125,10 @@ if [ $initiate_start -eq 1 ]; then
 			rm -rf /gdrive2/cha/gdrive_daily_limit.txt
 			plot_number=1
 		fi
-		if [ `find /gdrive3/cha -type f -size +100G | wc -l` -eq 0 && `wc -c /gdrive3/cha/gdrive_daily_limit.txt | awk '{print $1}'` -eq 0 ]; then
+		sleep 5s
+		if [ `find /gdrive3/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive3/cha/
-			if [ `wc -c /gdrive3/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
+			if [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 				mv /plot1/zip_plot/*.zip /gdrive3/cha/
 				plot_number=1
 			else
@@ -143,9 +145,10 @@ if [ $initiate_start -eq 1 ]; then
 			rm -rf /gdrive3/cha/gdrive_daily_limit.txt
 			plot_number=1
 		fi
-		if [ `find /gdrive4/cha -type f -size +100G | wc -l` -eq 0 && `wc -c /gdrive4/cha/gdrive_daily_limit.txt | awk '{print $1}'` -eq 0 ]; then
+		sleep 5s
+		if [ `find /gdrive4/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive4/cha/
-			if [ `wc -c /gdrive4/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
+			if [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 				mv /plot1/zip_plot/*.zip /gdrive4/cha/
 				plot_number=1
 			else
@@ -162,9 +165,10 @@ if [ $initiate_start -eq 1 ]; then
 			rm -rf /gdrive4/cha/gdrive_daily_limit.txt
 			plot_number=1
 		fi
-		if [ `find /gdrive5/cha -type f -size +100G | wc -l` -eq 0 && `wc -c /gdrive5/cha/gdrive_daily_limit.txt | awk '{print $1}'` -eq 0 ]; then
+		sleep 5s
+		if [ `find /gdrive5/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive5/cha/
-			if [ `wc -c /gdrive5/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
+			if [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 				mv /plot1/zip_plot/*.zip /gdrive5/cha/
 				plot_number=1
 			else
@@ -181,9 +185,10 @@ if [ $initiate_start -eq 1 ]; then
 			rm -rf /gdrive5/cha/gdrive_daily_limit.txt
 			plot_number=1
 		fi
-		if [ `find /gdrive6/cha -type f -size +100G | wc -l` -eq 0 && `wc -c /gdrive6/cha/gdrive_daily_limit.txt | awk '{print $1}'` -eq 0 ]; then
+		sleep 5s
+		if [ `find /gdrive6/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 			head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive6/cha/
-			if [ `wc -c /gdrive6/cha/gdrive_daily_limit.txt | awk '{print $1}'` -gt 0 ]; then
+			if [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 				mv /plot1/zip_plot/*.zip /gdrive6/cha/
 				plot_number=1
 			else
@@ -200,6 +205,7 @@ if [ $initiate_start -eq 1 ]; then
 			rm -rf /gdrive6/cha/gdrive_daily_limit.txt
 			plot_number=1
 		fi
+		sleep 5s
 	done
 fi
 }
@@ -248,7 +254,7 @@ if [ $initiate_start -eq 1 ]; then
 				rm -rf /gdrive1/cha/gdrive_daily_limit.txt
 				acak_1=$[RANDOM%999999999999+100000000000]
 				sudo -u root nice --1 zip -r -0 -m /plot1/zip_plot/$acak_1.zip /plot1/zip_plot/*plot
-				plot_number=((($plot_number + 1)*1))
+				plot_number=$((($plot_number + 1)*1))
 			fi
 		done
 

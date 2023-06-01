@@ -13,6 +13,7 @@ N=0
 initiate1=0
 initiate2=0
 initiate_start=0
+plot_number=1
 export ftp_1=0
 export mount_gdrive3=`df -h | grep gdrive3 | wc -l`
 
@@ -20,9 +21,9 @@ export mount_gdrive3=`df -h | grep gdrive3 | wc -l`
 sudo mkdir /plot1 && sudo chown -R root /plot1
 sudo mkdir /plot1/zip_plot && sudo chown -R root /plot1/zip_plot
 cd 
-find /plot1/ -maxdepth 1 -type f -delete
-find /plot3/ -maxdepth 1 -type f -delete
-find /plot1/zip_plot/ -maxdepth 1 -type f -delete
+#find /plot1/ -maxdepth 1 -type f -delete
+#find /plot3/ -maxdepth 1 -type f -delete
+find /plot1/temp/ -maxdepth 1 -type f -delete
 #sudo apt install mmv
 
 
@@ -86,14 +87,18 @@ plot_mover()
 if [ $initiate_start -eq 1 ]; then
 	while [ 100 -gt 1 ]
 	do
-		if [ `find /plot1/zip_plot/ -type f -name "gdrive_daily_limit.txt" | wc -l` -ge 1 ]; then
+		if [ `find /plot1/zip_plot/ -type f -size +100G | wc -l` -ge 1 ]; then
 			if [ `find /gdrive1/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive1/cha/
 				if [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 1"
 					mv /plot1/zip_plot/*.zip /gdrive1/cha/
 					sleep 60s
+					rclone cleanup gdrive1:
+					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive1/cha/gdrive_daily_limit.txt
+					sleep 15s
 				else
 					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 1"
 					sleep 5s
@@ -107,10 +112,14 @@ if [ $initiate_start -eq 1 ]; then
 			if [ `find /gdrive2/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive2/cha/
 				if [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 2"
 					mv /plot1/zip_plot/*.zip /gdrive2/cha/
 					sleep 60s
+					rclone cleanup gdrive2:
+					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive2/cha/gdrive_daily_limit.txt
+					sleep 15s
 				else
 					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 2"
 					sleep 5s
@@ -124,10 +133,14 @@ if [ $initiate_start -eq 1 ]; then
 			if [ `find /gdrive3/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive3/cha/
 				if [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 3"
 					mv /plot1/zip_plot/*.zip /gdrive3/cha/
 					sleep 60s
+					rclone cleanup gdrive3:
+					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive3/cha/gdrive_daily_limit.txt
+					sleep 15s
 				else
 					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 3"
 					sleep 5s
@@ -141,10 +154,14 @@ if [ $initiate_start -eq 1 ]; then
 			if [ `find /gdrive4/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive4/cha/
 				if [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 4"
 					mv /plot1/zip_plot/*.zip /gdrive4/cha/
 					sleep 60s
+					rclone cleanup gdrive4:
+					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive4/cha/gdrive_daily_limit.txt
+					sleep 15s
 				else
 					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 4"
 					sleep 5s
@@ -158,10 +175,14 @@ if [ $initiate_start -eq 1 ]; then
 			if [ `find /gdrive5/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive5/cha/
 				if [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 5"
 					mv /plot1/zip_plot/*.zip /gdrive5/cha/
 					sleep 60s
+					rclone cleanup gdrive5:
+					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive5/cha/gdrive_daily_limit.txt
+					sleep 15s
 				else
 					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 5"
 					sleep 5s
@@ -175,10 +196,14 @@ if [ $initiate_start -eq 1 ]; then
 			if [ `find /gdrive6/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive6/cha/
 				if [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 6"
 					mv /plot1/zip_plot/*.zip /gdrive6/cha/
 					sleep 60s
+					rclone cleanup gdrive6:
+					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive6/cha/gdrive_daily_limit.txt
+					sleep 15s
 				else
 					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 6"
 					sleep 5s
@@ -211,7 +236,7 @@ fi
 
 if [ $initiate_start -eq 1 ]; then
 	plot_number=0
-	sudo fstrim -v /plot1
+	mkdir /plot1/temp/
 	mkdir /gdrive1/cha/
 	sudo -u root rclone mount --allow-non-empty --daemon gdrive1: /gdrive1 && chmod 777 /gdrive1 && chown -R root /gdrive1 
 	mkdir /gdrive2/cha/
@@ -224,29 +249,36 @@ if [ $initiate_start -eq 1 ]; then
 	sudo -u root rclone mount --allow-non-empty --daemon gdrive5: /gdrive5 && chmod 777 /gdrive5 && chown -R root /gdrive5
 	mkdir /gdrive6/cha/
 	sudo -u root rclone mount --allow-non-empty --daemon gdrive6: /gdrive6 && chmod 777 /gdrive6 && chown -R root /gdrive6
+	sudo fstrim -v /plot1
 
 	while [ 1 -gt 0 ]
 	do
-		if [ $plot_number -ge 2 ]; then
-			sudo fstrim -v /plot1
-			plot_number=0
-		fi
+		while [ $plot_number -ge 2 ]
+		do
+			if [ `find /plot1/zip_plot -type f -size +100G | wc -l` -ge 2 ]; then
+				echo /plot1/zip_plot Sudah Over CAPACITY
+				sleep 30s
+			else
+				sudo fstrim -v /plot1
+				plot_number=1
+			fi
+		done
 		sleep 30s
 		echo "PLOT Number $plot_number"
-		while [ $plot_number -le 2 ]
+		while [ $plot_number -lt 3 ]
 		do
 			sleep 10s
-			if [ `ls /plot1 | wc -l` -le 2 ]; then
-				if [ `ls /plot1 | wc -l` -eq 2 ]; then
+			if [ `ls /plot1/temp | wc -l` -le 2 ]; then
+				if [ `ls /plot1/temp | wc -l` -eq 2 ]; then
 					ls -t | tail -1 | xargs rm -f
 				fi
 				# Ini -u 512 dan -v 128 diubah jadi -u 128 dan tidak pake -v, coba dilihat effisiensi harga VM/day nya dengan kecepatan plotnya jika lebih efisien jangan dirubah
-				/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 2 -u 256 -k 33 -t /plot1/ -d /plot1/zip_plot/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
-				rm -rf /root/gdrive_daily_limit.txt
-				rm -rf /gdrive1/cha/gdrive_daily_limit.txt
+				/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 2 -u 256 -k 33 -t /plot1/temp/ -d /plot1/zip_plot/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
 				acak_1=$[RANDOM%999999999999+100000000000]
 				sudo -u root nice --1 zip -r -0 -m /plot1/zip_plot/$acak_1.zip /plot1/zip_plot/*plot
 				plot_number=$((($plot_number + 1)*1))
+			else
+				find /plot1/temp/ -maxdepth 1 -type f -delete
 			fi
 		done
 
@@ -264,3 +296,4 @@ if [ $initiate_start -eq 1 ]; then
 		
 	done
 fi
+

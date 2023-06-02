@@ -41,6 +41,17 @@ if [ $initiate_start -eq 1 ]; then
 		sleep 30
 		chmod +x /root/skripburu2/buru2.sh
 		/root/skripburu2/buru2.sh 
+		rclone cleanup gdrive1:
+		sleep 15s
+		rclone cleanup gdrive2:
+		sleep 15s
+		rclone cleanup gdrive3:
+		sleep 15s
+		rclone cleanup gdrive4:
+		sleep 15s
+		rclone cleanup gdrive5:
+		sleep 15s
+		rclone cleanup gdrive6:
 		sleep 3600
 	done
 fi
@@ -93,9 +104,8 @@ if [ $initiate_start -eq 1 ]; then
 				if [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 1"
 					mv /plot1/zip_plot/*.zip /gdrive1/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
-					rclone cleanup gdrive1:
-					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive1/cha/gdrive_daily_limit.txt
 					sleep 15s
@@ -114,9 +124,8 @@ if [ $initiate_start -eq 1 ]; then
 				if [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 2"
 					mv /plot1/zip_plot/*.zip /gdrive2/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
-					rclone cleanup gdrive2:
-					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive2/cha/gdrive_daily_limit.txt
 					sleep 15s
@@ -135,9 +144,8 @@ if [ $initiate_start -eq 1 ]; then
 				if [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 3"
 					mv /plot1/zip_plot/*.zip /gdrive3/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
-					rclone cleanup gdrive3:
-					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive3/cha/gdrive_daily_limit.txt
 					sleep 15s
@@ -156,9 +164,8 @@ if [ $initiate_start -eq 1 ]; then
 				if [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 4"
 					mv /plot1/zip_plot/*.zip /gdrive4/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
-					rclone cleanup gdrive4:
-					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive4/cha/gdrive_daily_limit.txt
 					sleep 15s
@@ -177,9 +184,8 @@ if [ $initiate_start -eq 1 ]; then
 				if [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 5"
 					mv /plot1/zip_plot/*.zip /gdrive5/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
-					rclone cleanup gdrive5:
-					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive5/cha/gdrive_daily_limit.txt
 					sleep 15s
@@ -198,9 +204,8 @@ if [ $initiate_start -eq 1 ]; then
 				if [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 6"
 					mv /plot1/zip_plot/*.zip /gdrive6/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
-					rclone cleanup gdrive6:
-					sleep 15s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive6/cha/gdrive_daily_limit.txt
 					sleep 15s
@@ -296,4 +301,3 @@ if [ $initiate_start -eq 1 ]; then
 		
 	done
 fi
-

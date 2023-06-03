@@ -98,8 +98,8 @@ plot_mover()
 if [ $initiate_start -eq 1 ]; then
 	while [ 100 -gt 1 ]
 	do
-		if [ `find /plot1/zip_plot/ -type f -size +100G | wc -l` -ge 1 ]; then
-			if [ `find /gdrive1/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+		if [ `find /plot1/zip_plot/ -type f -size +100G | wc -l` -le 0 ]; then
+			if [ `find /gdrive1/cha -type f -size +100G | wc -l` -le 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive1/cha/
 				if [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 1"
@@ -119,7 +119,7 @@ if [ $initiate_start -eq 1 ]; then
 				sleep 3s
 			fi
 			sleep 5s
-			if [ `find /gdrive2/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+			if [ `find /gdrive2/cha -type f -size +100G | wc -l` -le 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive2/cha/
 				if [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 2"
@@ -139,7 +139,7 @@ if [ $initiate_start -eq 1 ]; then
 				sleep 3s
 			fi
 			sleep 5s
-			if [ `find /gdrive3/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+			if [ `find /gdrive3/cha -type f -size +100G | wc -l` -le 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive3/cha/
 				if [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 3"
@@ -159,7 +159,7 @@ if [ $initiate_start -eq 1 ]; then
 				sleep 3s
 			fi
 			sleep 5s
-			if [ `find /gdrive4/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+			if [ `find /gdrive4/cha -type f -size +100G | wc -l` -le 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive4/cha/
 				if [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 4"
@@ -179,7 +179,7 @@ if [ $initiate_start -eq 1 ]; then
 				sleep 3s
 			fi
 			sleep 5s
-			if [ `find /gdrive5/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+			if [ `find /gdrive5/cha -type f -size +100G | wc -l` -le 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive5/cha/
 				if [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 5"
@@ -199,7 +199,7 @@ if [ $initiate_start -eq 1 ]; then
 				sleep 3s
 			fi
 			sleep 5s
-			if [ `find /gdrive6/cha -type f -size +100G | wc -l` -eq 0 ] && [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -eq 0 ]; then
+			if [ `find /gdrive6/cha -type f -size +100G | wc -l` -le 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive6/cha/
 				if [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 6"
@@ -301,3 +301,4 @@ if [ $initiate_start -eq 1 ]; then
 		
 	done
 fi
+

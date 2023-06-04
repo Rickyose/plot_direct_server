@@ -98,8 +98,6 @@ plot_mover()
 if [ $initiate_start -eq 1 ]; then
 	while [ 100 -gt 1 ]
 	do
-		sleep 15s
-		if [ `find /plot1/zip_plot/ -type f -size +100G | wc -l` -le 0 ]; then
 			if [ `find /gdrive1/cha -type f -size +1G | wc -l` -le 0 ]; then
 				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive1/cha/
 				if [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
@@ -220,7 +218,6 @@ if [ $initiate_start -eq 1 ]; then
 				sleep 3s
 			fi
 			sleep 5s
-		fi
 	done
 fi
 }

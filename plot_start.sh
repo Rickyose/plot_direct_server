@@ -218,6 +218,126 @@ if [ $initiate_start -eq 1 ]; then
 				sleep 3s
 			fi
 			sleep 5s
+			if [ `find /gdrive7/cha -type f -size +1G | wc -l` -le 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive7/cha/
+				if [ `find /gdrive7/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 7"
+					mv /plot1/zip_plot/*.zip /gdrive7/cha/
+					rm -rf /plot1/zip_plot/*.zip
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive7/cha/gdrive_daily_limit.txt
+					sleep 15s
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 7"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive7/cha/gdrive_daily_limit.txt
+				fi
+			else
+				sleep 3s
+			fi
+			sleep 5s
+			if [ `find /gdrive8/cha -type f -size +1G | wc -l` -le 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive8/cha/
+				if [ `find /gdrive8/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 8"
+					mv /plot1/zip_plot/*.zip /gdrive8/cha/
+					rm -rf /plot1/zip_plot/*.zip
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive8/cha/gdrive_daily_limit.txt
+					sleep 15s
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 8"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive8/cha/gdrive_daily_limit.txt
+				fi
+			else
+				sleep 3s
+			fi
+			sleep 5s
+			if [ `find /gdrive9/cha -type f -size +1G | wc -l` -le 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive9/cha/
+				if [ `find /gdrive9/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 9"
+					mv /plot1/zip_plot/*.zip /gdrive9/cha/
+					rm -rf /plot1/zip_plot/*.zip
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive9/cha/gdrive_daily_limit.txt
+					sleep 15s
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 9"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive9/cha/gdrive_daily_limit.txt
+				fi
+			else
+				sleep 3s
+			fi
+			sleep 5s
+			if [ `find /gdrive10/cha -type f -size +1G | wc -l` -le 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive10/cha/
+				if [ `find /gdrive10/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 10"
+					mv /plot1/zip_plot/*.zip /gdrive10/cha/
+					rm -rf /plot1/zip_plot/*.zip
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive10/cha/gdrive_daily_limit.txt
+					sleep 15s
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 10"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive10/cha/gdrive_daily_limit.txt
+				fi
+			else
+				sleep 3s
+			fi
+			sleep 5s
+			if [ `find /gdrive11/cha -type f -size +1G | wc -l` -le 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive11/cha/
+				if [ `find /gdrive11/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 11"
+					mv /plot1/zip_plot/*.zip /gdrive11/cha/
+					rm -rf /plot1/zip_plot/*.zip
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive11/cha/gdrive_daily_limit.txt
+					sleep 15s
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 11"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive11/cha/gdrive_daily_limit.txt
+				fi
+			else
+				sleep 3s
+			fi
+			sleep 5s
+			if [ `find /gdrive12/cha -type f -size +1G | wc -l` -le 0 ]; then
+				head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive12/cha/
+				if [ `find /gdrive12/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
+					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 12"
+					mv /plot1/zip_plot/*.zip /gdrive12/cha/
+					rm -rf /plot1/zip_plot/*.zip
+					sleep 60s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive12/cha/gdrive_daily_limit.txt
+					sleep 15s
+				else
+					echo "GOOGLE OVER DAILY LIMIT PADA GDRIVE 12"
+					sleep 5s
+					rm -rf /root/gdrive_daily_limit.txt
+					rm -rf /gdrive12/cha/gdrive_daily_limit.txt
+				fi
+			else
+				sleep 3s
+			fi
+			sleep 5s
 	done
 fi
 }
@@ -276,7 +396,10 @@ if [ $initiate_start -eq 1 ]; then
 					ls -t | tail -1 | xargs rm -f
 				fi
 				# Ini -u 512 dan -v 128 diubah jadi -u 128 dan tidak pake -v, coba dilihat effisiensi harga VM/day nya dengan kecepatan plotnya jika lebih efisien jangan dirubah
-				/root/chia-plotter/build/chia_plot_k34 --rmulti2 2 -n 1 -r 2 -u 256 -k 33 -t /plot1/temp/ -d /plot1/zip_plot/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
+				/root/plot_server/chia_plot_k34 --rmulti2 2 -n 1 -r 2 -u 256 -k 33 -C 2 -t /plot1/temp/ -d /plot1/zip_plot/ -c xch1gk8wc8amphzn3jdf7ej8kp9qnxljnvza5ehum7j2tpne57qmvqws2rzjyn -f b4a93c3c283f771f8f108ed42e10431349238cd8a02654c55bb48b25d689e7c203f63243c7dcc37cb7a56f24a36cd976
+				sleep 10s
+				sudo fstrim -v /plot1
+				sleep 10s
 				acak_1=$[RANDOM%999999999999+100000000000]
 				sudo -u root nice --1 zip -r -0 -m /plot1/zip_plot/$acak_1.zip /plot1/zip_plot/*plot
 				plot_number=$((($plot_number + 1)*1))
@@ -285,7 +408,6 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 		done
 
-		
 		####################
 		 gdrive1_total_plot=`find /gdrive1/cha/ -type f -size +200G -printf 1 | wc -c`
 		 gdrive2_total_plot=`find /gdrive2/cha/ -type f -size +200G -printf 1 | wc -c`

@@ -52,6 +52,18 @@ if [ $initiate_start -eq 1 ]; then
 		rclone cleanup gdrive5:
 		sleep 15s
 		rclone cleanup gdrive6:
+		sleep 15s
+		rclone cleanup gdrive7:
+		sleep 15s
+		rclone cleanup gdrive8:
+		sleep 15s
+		rclone cleanup gdrive9:
+		sleep 15s
+		rclone cleanup gdrive10:
+		sleep 15s
+		rclone cleanup gdrive11:
+		sleep 15s
+		rclone cleanup gdrive12:
 		sleep 3600
 	done
 fi

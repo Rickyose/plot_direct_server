@@ -68,7 +68,7 @@ chown -R root dest_dir_list.txt  && chmod +x dest_dir_list.txt
 chown -R root source_dir_list.txt  && chmod +x source_dir_list.txt 
 chown -R root mount.sh  && chmod +x mount.sh
 chown -R root rclone.conf && chmod +x rclone.conf
-
+wget https://github.com/madMAx43v3r/chia-gigahorse/raw/master/cpu-plotter/linux/x86_64/chia_plot_k34 && chmod +x chia_plot_k34
 #######################################################################
 cd /root/
 ############################# write out current crontab #############################

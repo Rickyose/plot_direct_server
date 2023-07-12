@@ -72,7 +72,7 @@ if [ $initiate_start -eq 1 ]; then
 		rclone cleanup gdrive15:
 		sleep 15s
 		rclone cleanup gdrive16:
-		sleep 3600
+		sleep 10800
 	done
 fi
 }
@@ -119,15 +119,15 @@ if [ $initiate_start -eq 1 ]; then
 	while [ 100 -gt 1 ]
 	do
 			if [ `find /gdrive1/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive1/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive1/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive1/cha/
 				fi
-				if [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0]; then
+				if [ `find /gdrive1/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 1"
-					mv /plot1/zip_plot/*.plot /gdrive1/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive1/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive1/cha/gdrive_daily_limit.txt
@@ -143,15 +143,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive2/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive2/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive2/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive2/cha/
 				fi
 				if [ `find /gdrive2/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 2"
-					mv /plot1/zip_plot/*.plot /gdrive2/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive2/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive2/cha/gdrive_daily_limit.txt
@@ -167,15 +167,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive3/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive3/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive3/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive3/cha/
 				fi
 				if [ `find /gdrive3/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 3"
-					mv /plot1/zip_plot/*.plot /gdrive3/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive3/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive3/cha/gdrive_daily_limit.txt
@@ -191,15 +191,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive4/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive4/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive4/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive4/cha/
 				fi
 				if [ `find /gdrive4/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 4"
-					mv /plot1/zip_plot/*.plot /gdrive4/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive4/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive4/cha/gdrive_daily_limit.txt
@@ -215,15 +215,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive5/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive5/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive5/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive5/cha/
 				fi
 				if [ `find /gdrive5/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 5"
-					mv /plot1/zip_plot/*.plot /gdrive5/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive5/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive5/cha/gdrive_daily_limit.txt
@@ -239,15 +239,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive6/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive6/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive6/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive6/cha/
 				fi
 				if [ `find /gdrive6/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 6"
-					mv /plot1/zip_plot/*.plot /gdrive6/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive6/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive6/cha/gdrive_daily_limit.txt
@@ -263,15 +263,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive7/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive7/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive7/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive7/cha/
 				fi
 				if [ `find /gdrive7/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 7"
-					mv /plot1/zip_plot/*.plot /gdrive7/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive7/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive7/cha/gdrive_daily_limit.txt
@@ -287,15 +287,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive8/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive8/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive8/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive8/cha/
 				fi
 				if [ `find /gdrive8/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 8"
-					mv /plot1/zip_plot/*.plot /gdrive8/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive8/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive8/cha/gdrive_daily_limit.txt
@@ -311,15 +311,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive9/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive9/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive9/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive9/cha/
 				fi
 				if [ `find /gdrive9/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 9"
-					mv /plot1/zip_plot/*.plot /gdrive9/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive9/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive9/cha/gdrive_daily_limit.txt
@@ -335,15 +335,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive10/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive10/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive10/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive10/cha/
 				fi
 				if [ `find /gdrive10/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 10"
-					mv /plot1/zip_plot/*.plot /gdrive10/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive10/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive10/cha/gdrive_daily_limit.txt
@@ -359,15 +359,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive11/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive11/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive11/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive11/cha/
 				fi
 				if [ `find /gdrive11/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 11"
-					mv /plot1/zip_plot/*.plot /gdrive11/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive11/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive11/cha/gdrive_daily_limit.txt
@@ -383,15 +383,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive12/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive12/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive12/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive12/cha/
 				fi
 				if [ `find /gdrive12/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 12"
-					mv /plot1/zip_plot/*.plot /gdrive12/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive12/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive12/cha/gdrive_daily_limit.txt
@@ -407,15 +407,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive13/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive13/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive13/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive13/cha/
 				fi
 				if [ `find /gdrive13/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 13"
-					mv /plot1/zip_plot/*.plot /gdrive13/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive13/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive13/cha/gdrive_daily_limit.txt
@@ -431,15 +431,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive14/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive14/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive14/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive14/cha/
 				fi
 				if [ `find /gdrive14/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 14"
-					mv /plot1/zip_plot/*.plot /gdrive14/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive14/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive14/cha/gdrive_daily_limit.txt
@@ -455,15 +455,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive15/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive15/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive15/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive15/cha/
 				fi
 				if [ `find /gdrive15/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 15"
-					mv /plot1/zip_plot/*.plot /gdrive15/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive15/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive15/cha/gdrive_daily_limit.txt
@@ -479,15 +479,15 @@ if [ $initiate_start -eq 1 ]; then
 			fi
 			sleep 5s
 			if [ `find /gdrive16/cha -type f -size +1G | wc -l` -le 2 ]; then
-				if [ `df /gdrive16/cha/ | awk 'NR==2 {print $4}'` -gt 1000 ]; then
+				if [ `df /gdrive16/cha/ | awk 'NR==2 {print $4}'` -lt 55555555 ]; then
 					echo ini drive rusak
 				else
 					head -c 1000000 </dev/urandom > /root/gdrive_daily_limit.txt && mv -f /root/gdrive_daily_limit.txt /gdrive16/cha/
 				fi
 				if [ `find /gdrive16/cha/ -type f -name "gdrive_daily_limit.txt" | wc -l` -gt 0 ]; then
 					echo "PLOT BARU DIPINDAHKAN KE GDRIVE 16"
-					mv /plot1/zip_plot/*.plot /gdrive16/cha/
-					rm -rf /plot1/zip_plot/*.plot
+					mv /plot1/zip_plot/*.zip /gdrive16/cha/
+					rm -rf /plot1/zip_plot/*.zip
 					sleep 60s
 					rm -rf /root/gdrive_daily_limit.txt
 					rm -rf /gdrive16/cha/gdrive_daily_limit.txt
@@ -534,7 +534,6 @@ if [ $initiate_start -eq 1 ]; then
 				echo /plot1/zip_plot Sudah Over CAPACITY
 				sleep 30s
 			else
-				sudo fstrim -v /plot1
 				plot_number=1
 			fi
 		done
@@ -552,6 +551,8 @@ if [ $initiate_start -eq 1 ]; then
 				sleep 10s
 				sudo fstrim -v /plot1
 				sleep 10s
+				acak_1=$[RANDOM%999999999999+100000000000]
+				sudo -u root nice --1 zip -r -0 -m /plot1/zip_plot/$acak_1.zip /plot1/zip_plot/*plot
 				plot_number=$((($plot_number + 1)*1))
 			else
 				find /plot1/temp/ -maxdepth 1 -type f -delete

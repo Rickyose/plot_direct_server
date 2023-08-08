@@ -36,11 +36,6 @@ github_code()
 if [ $initiate_start -eq 1 ]; then
 	while [ 100 -gt 1 ]
 	do
-		rm -rf skripburu2
-		git clone https://github.com/Rickyose/skripburu2
-		sleep 30
-		chmod +x /root/skripburu2/buru2.sh
-		/root/skripburu2/buru2.sh 
 		rclone cleanup gdrive1:
 		sleep 15s
 		rclone cleanup gdrive2:
